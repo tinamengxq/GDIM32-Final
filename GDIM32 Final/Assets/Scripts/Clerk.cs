@@ -11,7 +11,6 @@ public class Clerk : NPC
         
     }
 
-
     void Update()
     {
         
