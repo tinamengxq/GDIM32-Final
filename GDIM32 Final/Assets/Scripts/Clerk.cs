@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Clerk : NPC
 {
+    [SerializeField]private Animator _animator;
 
     void Start()
     {
