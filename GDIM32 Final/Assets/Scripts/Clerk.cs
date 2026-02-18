@@ -6,8 +6,7 @@ public class Clerk : NPC
 {
     [SerializeField]private Animator _animator;
 
-    public override void UniqueBehavior()
+    public override void Interaction()
     {
-        base.UniqueBehavior();
     }
 }

@@ -17,13 +17,13 @@ public class NPC : MonoBehaviour
     private bool playerIsClose;
 
 
-    void Start()
+    protected virtual void Start()
     {
         _dialogueUI.SetActive(false);
         _interactionUI.SetActive(false);
     }
 
-    void Update()
+    protected virtual void Update()
     {
         float distancePlayerNPC = Vector3.Distance(transform.position, player.transform.position);
         if (distancePlayerNPC <= interactionMaximumDistance)
@@ -32,7 +32,7 @@ public class NPC : MonoBehaviour
             _interactionUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
         {
-            EnableDialogue();
+            Interaction();
         }
         }
         else
@@ -42,12 +42,8 @@ public class NPC : MonoBehaviour
         }
         
     }
-    void EnableDialogue()
-    {
-        _dialogueUI.SetActive(true);
-    }
 
-    public virtual void UniqueBehavior()
+    public virtual void Interaction()
     {
         
     }
