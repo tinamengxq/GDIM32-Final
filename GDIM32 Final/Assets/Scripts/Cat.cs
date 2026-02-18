@@ -5,14 +5,9 @@ using UnityEngine;
 public class Cat : NPC
 {
     [SerializeField]private Animator _animator;
-
-    void Start()
+    public override void UniqueBehavior()
     {
-        
+        base.UniqueBehavior();
     }
 
-    void Update()
-    {
-        
-    }
 }
