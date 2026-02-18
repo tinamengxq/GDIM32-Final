@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+      
+      public static GameController Instance { get; private set; }
+      public Player Player { get; private set; }
 
-    void Start()
-    {
-        
-    }
+      private void Awake(){
+          if (Instance != null && Instance != this){
+              Destroy(this);
+              return;
+          }
 
-    void Update()
-    {
-        
-    }
+          Instance = this;
+
+          GameObject playerObj = GameObject.FindWithTag("Player");
+          Player = playerObj.GetComponent<Player>();
+      }
+  
+  
 }
