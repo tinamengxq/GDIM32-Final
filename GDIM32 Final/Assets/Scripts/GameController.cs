@@ -19,6 +19,5 @@ public class GameController : MonoBehaviour
           GameObject playerObj = GameObject.FindWithTag("Player");
           Player = playerObj.GetComponent<Player>();
       }
-  
-  
+
 }
