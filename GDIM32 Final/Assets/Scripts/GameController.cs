@@ -28,19 +28,35 @@ public class GameController : MonoBehaviour
     public event NPCAction QuestUpdate;
     public event NPCAction CatStateUpdate;
 
+    public enum QuestState
+    {
+        Finished,
+        NotFinished
+    }
+
     public void CompleteQuest(int questNumber)
     {
         if(questNumber < 0 || questNumber >= quests.Count)
         {
             return;
         }
-        
+        //quests[questNumber].state = QuestState.Finished;
 
         QuestUpdate?.Invoke();
-
-
     }
 
+    public enum CatState
+    {
+        NotSatisfied,
+        Eating,
+        Playing,
+        Satisfied
+    }
+
+    public void UpdateState(CatState catState)
+    {
+        CatStateUpdate?.Invoke();
+    }
 
 
 }
