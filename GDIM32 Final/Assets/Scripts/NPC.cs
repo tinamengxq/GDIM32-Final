@@ -5,12 +5,16 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
+
     [SerializeField]private float interactionMaximumDistance = 5f;
+
     public GameObject _dialogueUI;
     public GameObject _interactionUI;
-
+    public GameObject _questUI;
     public Transform player;
-    private bool playerIsClose = false;
+
+
+    private bool playerIsClose;
 
 
     void Start()
