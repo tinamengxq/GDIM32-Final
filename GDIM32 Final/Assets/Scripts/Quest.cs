@@ -13,7 +13,14 @@ public class Quest : MonoBehaviour
     public string questContent;
     public QuestState questState;
 
-    public List<Quest> quests = new List<Quest>();
+    public List<string> quests = new List<string>();
+    
+
+    public void ListofQuests()
+    {
+        quests.Add(questContent = "Feed The Cat.");
+        quests.Add(questContent = "Play With The Cat.");
+    }
 
     
 }

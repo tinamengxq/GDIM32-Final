@@ -25,12 +25,15 @@ public class GameController : MonoBehaviour
 
 
     //Scripting
-    
-    
-    
     public delegate void NPCAction();
     public event NPCAction QuestUpdate;
     public event NPCAction CatStateUpdate;
+
+    public bool playerHasToy = false;
+    public bool playerHasFood = false;
+
+    
+    
 
     public void CompleteQuest(int questNumber)
     {
