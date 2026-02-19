@@ -15,7 +15,6 @@ public class Quest : MonoBehaviour
 
     public List<string> quests = new List<string>();
     
-
     public void ListofQuests()
     {
         quests.Add(questContent = "Feed The Cat.");

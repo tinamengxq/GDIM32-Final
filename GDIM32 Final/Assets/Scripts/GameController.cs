@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public delegate void NPCAction();
     public event NPCAction QuestUpdate;
     public event NPCAction CatStateUpdate;
+    public Quest quest;
 
     public bool playerHasToy = false;
     public bool playerHasFood = false;
@@ -37,7 +38,7 @@ public class GameController : MonoBehaviour
 
     public void CompleteQuest(int questNumber)
     {
-        //quests[questNumber].queststate = QuestState.Finished;
+        //quest.quests[questNumber].questState = QuestState.Finished;
         QuestUpdate?.Invoke();
     }
 
