@@ -13,5 +13,7 @@ public class Quest : MonoBehaviour
     public string questContent;
     public QuestState questState;
 
+    public List<Quest> quests = new List<Quest>();
+
     
 }

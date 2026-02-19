@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    
+    //Singleton
     public static GameController Instance { get; private set; }
     public Player Player { get; private set; }
 
@@ -21,7 +21,12 @@ public class GameController : MonoBehaviour
         Player = playerObj.GetComponent<Player>();
     }
 
-    public List<Quest> quests = new List<Quest>();
+
+
+
+    //Scripting
+    
+    
     
     public delegate void NPCAction();
     public event NPCAction QuestUpdate;
