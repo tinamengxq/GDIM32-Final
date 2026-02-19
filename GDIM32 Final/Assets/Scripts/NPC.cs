@@ -14,9 +14,6 @@ public class NPC : MonoBehaviour
     public Transform player;
 
 
-    private bool playerIsClose;
-
-
     protected virtual void Start()
     {
         _dialogueUI.SetActive(false);
@@ -28,7 +25,6 @@ public class NPC : MonoBehaviour
         float distancePlayerNPC = Vector3.Distance(transform.position, player.transform.position);
         if (distancePlayerNPC <= interactionMaximumDistance)
         {
-            playerIsClose = true;
             _interactionUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
         {
@@ -37,7 +33,6 @@ public class NPC : MonoBehaviour
         }
         else
         {
-            playerIsClose = false;
             _interactionUI.SetActive(false);
         }
         
