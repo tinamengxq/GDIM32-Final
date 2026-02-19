@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2739918256971109379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2930592107653355061}
+    m_Modifications:
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100881263053508937, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+      propertyPath: m_Name
+      value: collar_3bells_lightblue
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+--- !u!4 &4560971853121982043 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1823384588722559576, guid: 73ce27f155e254f8cb299362274c3468, type: 3}
+  m_PrefabInstance: {fileID: 2739918256971109379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6076418464637030969
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775521849865663871, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_Name
+      value: Cat_siamese_3bells_lightblue Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9005030573507167244, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4560971853121982043}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+--- !u!4 &2930592107653355061 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9005030573507167244, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+  m_PrefabInstance: {fileID: 6076418464637030969}
+  m_PrefabAsset: {fileID: 0}

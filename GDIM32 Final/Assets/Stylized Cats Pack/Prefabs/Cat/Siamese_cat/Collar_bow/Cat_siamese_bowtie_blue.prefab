@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7659422800699274605
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6146478451203485637, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775521849865663871, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      propertyPath: m_Name
+      value: Cat_siamese_bowtie_blue
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9005030573507167244, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5156503222023232961}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+--- !u!4 &1635923683612062049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9005030573507167244, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+  m_PrefabInstance: {fileID: 7659422800699274605}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8126433647034264994
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1635923683612062049}
+    m_Modifications:
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7686075328624958763, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+      propertyPath: m_Name
+      value: bowtie_blue
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+--- !u!4 &5156503222023232961 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3983838510176563299, guid: 013afe1c7da594c9e974798328b9a35e, type: 3}
+  m_PrefabInstance: {fileID: 8126433647034264994}
+  m_PrefabAsset: {fileID: 0}
