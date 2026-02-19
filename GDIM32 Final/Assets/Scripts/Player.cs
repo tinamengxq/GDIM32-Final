@@ -5,16 +5,14 @@ using UnityEngine.Scripting.APIUpdating;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]private float playerSpeed = 5f;
-    [SerializeField]private float jumpHeight = 1f;
+    public float speed = 5f;
 
     void Update()
     {
-        Move();
-    }
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-    void Move()
-    {
-        
+        Vector3 move = new Vector3(h, 0, v);
+        transform.Translate(move * speed * Time.deltaTime);
     }
 }
