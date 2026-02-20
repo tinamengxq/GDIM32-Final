@@ -22,6 +22,7 @@ public class Cat : NPC
 
     public override void Interaction()
     {
+        Debug.Log("Cat Interaction Triggered");
 
         if (GameController.Instance.playerHasToy && catState == CatState.NotSatisfied)
         {
