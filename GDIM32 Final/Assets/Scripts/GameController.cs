@@ -28,6 +28,7 @@ public class GameController : MonoBehaviour
     public delegate void NPCAction();
     public event NPCAction QuestUpdate;
     public event NPCAction CatStateUpdate;
+    public event NPCAction Startdialogue;
     public Quest quest;
     public Cat cat;
 

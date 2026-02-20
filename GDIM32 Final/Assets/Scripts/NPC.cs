@@ -13,6 +13,8 @@ public class NPC : MonoBehaviour
     public GameObject _questUI;
     public Transform player;
 
+    public Dialogue dialogue;
+
 
     protected virtual void Start()
     {

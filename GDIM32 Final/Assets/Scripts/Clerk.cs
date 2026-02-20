@@ -9,6 +9,7 @@ public class Clerk : NPC
     public override void Interaction()
     {
         _dialogueUI.SetActive(true);
+        DialogueManager.Instance.StartDialogue(dialogue);
         GameController.Instance.CompleteQuest(0);
     }
 }
