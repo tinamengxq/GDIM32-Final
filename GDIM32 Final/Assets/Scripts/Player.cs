@@ -14,5 +14,8 @@ public class Player : MonoBehaviour
 
         Vector3 move = new Vector3(h, 0, v);
         transform.Translate(move * speed * Time.deltaTime);
+
+        float mouseX = Input.GetAxis("Mouse X") * 200f * Time.deltaTime;
+        transform.Rotate(Vector3.up * mouseX);
     }
 }
