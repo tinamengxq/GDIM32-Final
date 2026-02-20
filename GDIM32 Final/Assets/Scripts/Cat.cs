@@ -22,7 +22,8 @@ public class Cat : NPC
 
     public override void Interaction()
     {
-        if(GameController.Instance.playerHasToy && catState == CatState.NotSatisfied)
+
+        if (GameController.Instance.playerHasToy && catState == CatState.NotSatisfied)
         {
             JustDoIt("Play", CatState.Playing, 1);
         }

@@ -19,22 +19,6 @@ public class Player : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * 200f * Time.deltaTime;
         transform.Rotate(Vector3.up * mouseX);
 
-        DetectObject();
     }
-
-    void DetectObject()
-    {
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * 5f, Color.red);
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, 5f))
-        {
-            Debug.Log("Hit: " + hit.collider.name);
-        }
-    }
-
-
 
 }
