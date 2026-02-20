@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
     public event NPCAction QuestUpdate;
     public event NPCAction CatStateUpdate;
     public Quest quest;
+    public Cat cat;
 
     public bool playerHasToy = false;
     public bool playerHasFood = false;

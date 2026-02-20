@@ -363,7 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cb2ebdda794483cad34af3b0d3b81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 0}
+  quest: {fileID: 2089745810}
+  cat: {fileID: 0}
   playerHasToy: 0
   playerHasFood: 0
 --- !u!4 &904951805
