@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class NPC : MonoBehaviour
 {
 
-    [SerializeField]private float interactionMaximumDistance = 5f;
+    [SerializeField]private float interactionMaximumDistance = 1f;
 
     public GameObject _dialogueUI;
     public GameObject _interactionUI;
@@ -28,6 +28,7 @@ public class NPC : MonoBehaviour
             _interactionUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
         {
+            _interactionUI.SetActive(false);
             Interaction();
         }
         }
