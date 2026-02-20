@@ -21,4 +21,4 @@ Put your individual final Devlog here.
 Put your individual final Devlog here.
 
 ## Open-Source Assets
-Cite any open-source assets here. Put them in a LIST, and use correctly formatted LINKS.
+[Guidence on how to make dialogue](https://www.youtube.com/watch?v=_nRzoTzeyxU)
