@@ -5,11 +5,11 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
 
-    public Queue<string> sentences;
+    private Queue<string> sentences;
 
     void Start()
     {
-        
+        sentences = new Queue<string>();
     }
 
 }
