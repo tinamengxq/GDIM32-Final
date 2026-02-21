@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
+    [SerializeField] private float interactionHeight = 1.5f;
 
     [SerializeField]private float interactionMaximumDistance = 3f;
 
@@ -26,26 +27,25 @@ public class NPC : MonoBehaviour
 
     protected virtual void Update()
     {
-        
+        if (player == null) return;
 
-        float distancePlayerNPC = Vector3.Distance(transform.position, player.transform.position);
-        
+        Vector3 targetPoint = transform.position + Vector3.up * interactionHeight;
 
-        if (distancePlayerNPC <= interactionMaximumDistance)
+        float distance = Vector3.Distance(player.position, targetPoint);
+
+        Vector3 directionToNPC = (targetPoint - player.position).normalized;
+        float dot = Vector3.Dot(player.forward, directionToNPC);
+
+        bool canInteract = distance <= interactionMaximumDistance && dot > 0.75f;
+
+        _interactionUI.SetActive(canInteract);
+
+        if (canInteract && Input.GetKeyDown(KeyCode.F))
         {
-            _interactionUI.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.F))
-        {
-            _interactionUI.SetActive(false);
             Interaction();
         }
-        }
-        else
-        {
-            _interactionUI.SetActive(false);
-        }
-        
     }
+
 
     public virtual void Interaction()
     {
