@@ -18,6 +18,8 @@ public class NPC : MonoBehaviour
 
     protected virtual void Start()
     {
+        player = Camera.main.transform;
+
         _dialogueUI.SetActive(false);
         _interactionUI.SetActive(false);
     }
