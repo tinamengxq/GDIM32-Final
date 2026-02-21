@@ -262,10 +262,15 @@ MonoBehaviour:
   _interactionUI: {fileID: 2007856882}
   _questUI: {fileID: 2089745808}
   player: {fileID: 47546349}
-  _animator: {fileID: 0}
+  _animator: {fileID: 354254785}
   eatingTime: 5
   playingTime: 5
   catState: 0
+--- !u!95 &354254785 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 264728596343322047, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
+  m_PrefabInstance: {fileID: 1493185172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &396903942
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc0fdaf6020644e3b72b12c5cfd8fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 0}
+  gameController: {fileID: 904951804}
 --- !u!4 &396903944
 Transform:
   m_ObjectHideFlags: 0
@@ -467,7 +472,12 @@ MonoBehaviour:
   _interactionUI: {fileID: 2007856882}
   _questUI: {fileID: 2089745808}
   player: {fileID: 47546349}
-  _animator: {fileID: 0}
+  _animator: {fileID: 713086657}
+--- !u!95 &713086657 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1694388104864216425, guid: 678bf8bc91771fa498236de892b83d1d, type: 3}
+  m_PrefabInstance: {fileID: 1411061973}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &842491113
 GameObject:
   m_ObjectHideFlags: 0
