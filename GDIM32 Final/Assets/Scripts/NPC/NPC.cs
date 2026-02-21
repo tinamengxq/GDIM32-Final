@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class NPC : MonoBehaviour
 {
 
-    [SerializeField]private float interactionMaximumDistance = 1f;
+    [SerializeField]private float interactionMaximumDistance = 3f;
 
     public GameObject _dialogueUI;
     public GameObject _interactionUI;
@@ -27,6 +27,8 @@ public class NPC : MonoBehaviour
         
 
         float distancePlayerNPC = Vector3.Distance(transform.position, player.transform.position);
+        
+
         if (distancePlayerNPC <= interactionMaximumDistance)
         {
             _interactionUI.SetActive(true);
