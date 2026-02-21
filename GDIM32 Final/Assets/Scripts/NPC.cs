@@ -24,6 +24,8 @@ public class NPC : MonoBehaviour
 
     protected virtual void Update()
     {
+        
+
         float distancePlayerNPC = Vector3.Distance(transform.position, player.transform.position);
         if (distancePlayerNPC <= interactionMaximumDistance)
         {

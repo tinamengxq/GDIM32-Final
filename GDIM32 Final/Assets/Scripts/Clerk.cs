@@ -12,6 +12,9 @@ public class Clerk : NPC
 
         _dialogueUI.SetActive(true);
         DialogueManager.Instance.StartDialogue(dialogue);
+
+        GameController.Instance.playerHasFood = true;
+
         GameController.Instance.CompleteQuest(0);
     }
 }

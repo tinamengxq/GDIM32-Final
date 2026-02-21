@@ -13,11 +13,18 @@ public enum CatState
 public class Cat : NPC
 {
     [SerializeField]private Animator _animator;
+    private AudioSource _audioSource;
+
     [SerializeField]private float eatingTime = 5f;
     [SerializeField]private float playingTime = 5f;
 
     public CatState catState = CatState.NotSatisfied;
 
+    protected override void Start()
+    {
+        base.Start();
+        _audioSource = GetComponent<AudioSource>();
+    }
 
 
     public override void Interaction()
@@ -32,12 +39,17 @@ public class Cat : NPC
         {
             JustDoIt("Eat", CatState.Eating, 0);
         }
+        
+
     }
 
     private void JustDoIt(string animatorString, CatState newState, int questNumber)
     {
         //_animator.SetString(animatorString);
         catState = newState;
+        _audioSource.Play();
+        Debug.Log("Audio Play Called");
+
         UI.Instance.ProgressUI(5);
         GameController.Instance.CompleteQuest(questNumber);
 
