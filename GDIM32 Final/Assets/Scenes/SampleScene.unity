@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  cameraTransform: {fileID: 963194228}
 --- !u!1 &354254779 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6775521849865663871, guid: e1389ac487fee4a259996e020b0b6443, type: 3}
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01666ee24e9254277a08623a05d13755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionHeight: 1.5
   interactionMaximumDistance: 8
   _dialogueUI: {fileID: 1402788897}
   _interactionUI: {fileID: 2007856882}
@@ -496,6 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e4e4001beb84e748df09e386bbd86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionHeight: 1.5
   interactionMaximumDistance: 1
   _dialogueUI: {fileID: 1402788897}
   _interactionUI: {fileID: 2007856882}
@@ -843,6 +846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8163ca9a86b94f058c526645c8339e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactionHeight: 1.5
   interactionMaximumDistance: 1
   _dialogueUI: {fileID: 1402788897}
   _interactionUI: {fileID: 2007856882}
