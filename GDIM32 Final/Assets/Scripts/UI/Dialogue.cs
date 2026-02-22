@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Dialogue 
+using System;
+//OKBEN
+[Serializable]
+public class Dialogue
 {
-    public string nameOFNPC;
+    public string nameOFNPC = "NPC";
     public string[] sentences;
 }

@@ -1,69 +1,104 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum CatState
-{
-    NotSatisfied,
-    Eating,
-    Playing,
-    Satisfied
-
-}
 public class Cat : NPC
 {
-    [SerializeField]private Animator _animator;
-    private AudioSource _audioSource;
+    [SerializeField] private Animator catAnimator;
+    [SerializeField] private AudioSource catAudioSource;
+    [SerializeField] private string eatStateName = "Armature|eat";
+    [SerializeField] private string playStateName = "Armature|play";
 
-    [SerializeField]private float eatingTime = 5f;
-    [SerializeField]private float playingTime = 5f;
-
-    public CatState catState = CatState.NotSatisfied;
-
-    protected override void Start()
+    private void Awake()
     {
-        base.Start();
-        _audioSource = GetComponent<AudioSource>();
+        if (catAnimator == null)
+        {
+            catAnimator = GetComponentInChildren<Animator>(true);
+        }
+
+        if (catAudioSource == null)
+        {
+            catAudioSource = GetComponent<AudioSource>();
+        }
     }
 
-
-    public override void Interaction()
+    private void Start()
     {
-        Debug.Log("Cat Interaction Triggered");
-
-        if (GameController.Instance.playerHasToy && catState == CatState.NotSatisfied)
+        if (catAnimator != null)
         {
-            JustDoIt("Play", CatState.Playing, 1);
+            catAnimator.enabled = true;
         }
-        else if(GameController.Instance.playerHasFood && catState == CatState.NotSatisfied)
-        {
-            JustDoIt("Eat", CatState.Eating, 0);
-        }
-        
-
     }
 
-    private void JustDoIt(string animatorString, CatState newState, int questNumber)
+    public override bool CanInteract()
     {
-        //_animator.SetString(animatorString);
-        catState = newState;
-        _audioSource.Play();
-        Debug.Log("Audio Play Called");
-
-        UI.Instance.ProgressUI(5);
-        GameController.Instance.CompleteQuest(questNumber);
-
-        float time = 5f;
-        float newtime = time - Time.deltaTime;
-        if(newtime <= 0f && questNumber == 0)
+        if (!base.CanInteract())
         {
-            catState = CatState.NotSatisfied;
+            return false;
         }
-        else if(newtime <= 0f && questNumber == 1)
+
+        GameController controller = GameController.Instance;
+        if (controller == null)
         {
-            catState = CatState.Satisfied;
+            return false;
         }
-        
+
+        if (controller.CurrentTrainingStage == TrainingStage.FeedAssigned)
+        {
+            return controller.HasCatFood;
+        }
+
+        if (controller.CurrentTrainingStage == TrainingStage.PlayAssigned)
+        {
+            return controller.HasCatToy;
+        }
+
+        return false;
     }
 
+    public override void Interact()
+    {
+        GameController controller = GameController.Instance;
+        if (controller == null)
+        {
+            return;
+        }
+
+        if (controller.CurrentTrainingStage == TrainingStage.FeedAssigned)
+        {
+            if (!controller.HasCatFood)
+            {
+                return;
+            }
+
+            PlayCatAnimation(eatStateName);
+            if (catAudioSource != null)
+            {
+                catAudioSource.Play();
+            }
+
+            controller.CompleteFeedQuest();
+            return;
+        }
+
+        if (controller.CurrentTrainingStage == TrainingStage.PlayAssigned)
+        {
+            if (!controller.HasCatToy)
+            {
+                return;
+            }
+
+            PlayCatAnimation(playStateName);
+            controller.CompletePlayQuest();
+        }
+    }
+
+    private void PlayCatAnimation(string stateName)
+    {
+        if (catAnimator == null || string.IsNullOrWhiteSpace(stateName))
+        {
+            return;
+        }
+
+        catAnimator.enabled = true;
+        catAnimator.Play(stateName, 0, 0f);
+    }
 }

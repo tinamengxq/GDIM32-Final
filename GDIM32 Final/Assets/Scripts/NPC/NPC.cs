@@ -1,54 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IInteractable
 {
     [SerializeField] private float interactionHeight = 1.5f;
+    [SerializeField] private float interactionMaximumDistance = 3f;
+    [SerializeField] private string promptText = "F: Interact";
 
-    [SerializeField]private float interactionMaximumDistance = 3f;
-
-    public GameObject _dialogueUI;
-    public GameObject _interactionUI;
-    public GameObject _questUI;
-    public Transform player;
-
-    public Dialogue dialogue;
-
-
-    protected virtual void Start()
+    public virtual string GetPromptText()
     {
-        player = Camera.main.transform;
-
-        _dialogueUI.SetActive(false);
-        _interactionUI.SetActive(false);
+        return promptText;
     }
 
-    protected virtual void Update()
+    public virtual Transform GetInteractionTransform()
     {
-        if (player == null) return;
+        return transform;
+    }
 
-        Vector3 targetPoint = transform.position + Vector3.up * interactionHeight;
+    public virtual float GetMaxDistance()
+    {
+        return interactionMaximumDistance;
+    }
 
-        float distance = Vector3.Distance(player.position, targetPoint);
-
-        Vector3 directionToNPC = (targetPoint - player.position).normalized;
-        float dot = Vector3.Dot(player.forward, directionToNPC);
-
-        bool canInteract = distance <= interactionMaximumDistance && dot > 0.75f;
-
-        _interactionUI.SetActive(canInteract);
-
-        if (canInteract && Input.GetKeyDown(KeyCode.F))
+    public virtual bool CanInteract()
+    {
+        if (!enabled || !gameObject.activeInHierarchy)
         {
-            Interaction();
+            return false;
         }
+
+        // Skip the plain base component to avoid double interaction on grouping objects.
+        if (GetType() == typeof(NPC))
+        {
+            return false;
+        }
+
+        return true;
     }
 
-
-    public virtual void Interaction()
+    public virtual void Interact()
     {
-        
+    }
+
+    public virtual Vector3 GetInteractionPoint()
+    {
+        return transform.position + Vector3.up * interactionHeight;
     }
 }
