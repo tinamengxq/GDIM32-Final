@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionHeight: 1.5
-  interactionMaximumDistance: 1
+  interactionMaximumDistance: 1.5
   promptText: 'F: Interact'
   speakerName: Casual1
 --- !u!4 &713086658 stripped
