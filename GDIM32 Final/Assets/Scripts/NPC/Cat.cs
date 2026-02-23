@@ -7,10 +7,11 @@ public class Cat : NPC
     [SerializeField] private string eatStateName = "Armature|eat";
     [SerializeField] private string playStateName = "Armature|play";
     [SerializeField] private GameObject catFoodPrefab;
+    [SerializeField] private GameObject catToyPrefab;
     [SerializeField] private Transform eatingPosition;
 
     private GameObject food;
-    
+    private GameObject toy;
     
 
     private void Awake()
@@ -76,7 +77,6 @@ public class Cat : NPC
             }
             
             MakeFoodAppear();
-
             PlayCatAnimation(eatStateName);
             if (catAudioSource != null)
             {
@@ -93,7 +93,7 @@ public class Cat : NPC
             {
                 return;
             }
-
+            MakeToyAppear();
             PlayCatAnimation(playStateName);
             controller.CompletePlayQuest();
         }
@@ -102,6 +102,12 @@ public class Cat : NPC
     {
         food = Instantiate(catFoodPrefab, eatingPosition.position, eatingPosition.rotation);
         Destroy(food, 10f);
+    }
+
+    private void MakeToyAppear()
+    {
+        toy = Instantiate(catToyPrefab, eatingPosition.position, eatingPosition.rotation);
+        Destroy(toy, 10f); 
     }
 
     private void PlayCatAnimation(string stateName)
