@@ -21,4 +21,6 @@ Put your individual final Devlog here.
 Put your individual final Devlog here.
 
 ## Open-Source Assets
-[Guidence on how to make dialogue](https://www.youtube.com/watch?v=_nRzoTzeyxU)
+[Guide on how to make dialogue](https://www.youtube.com/watch?v=_nRzoTzeyxU)
+[Guide on how to import skybox](https://www.youtube.com/shorts/oDXfDGw-rwg)
+[Skybox](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
