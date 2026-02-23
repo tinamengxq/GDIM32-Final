@@ -83,7 +83,6 @@ public class Cat : NPC
                 catAudioSource.Play();
             }
             controller.SetHasCatFood(false);
-            Destroy(food);
             controller.CompleteFeedQuest();
             return;
         }
@@ -102,8 +101,9 @@ public class Cat : NPC
     private void MakeFoodAppear()
     {
         food = Instantiate(catFoodPrefab, eatingPosition.position, eatingPosition.rotation);
-        //Destroy(food);
+        Destroy(food, 10f);
     }
+
     private void PlayCatAnimation(string stateName)
     {
         if (catAnimator == null || string.IsNullOrWhiteSpace(stateName))
