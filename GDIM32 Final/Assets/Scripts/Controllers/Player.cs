@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] float gravity = -25f;
 
     [Header("Look")]
-    [SerializeField] float lookSensitivity = 200f;
+    [SerializeField] float lookSensitivity = 300f;
     [SerializeField] Transform cameraTransform;
 
     [Header("Spawn & Safety")]
