@@ -10,6 +10,10 @@ public class QuestView : MonoBehaviour
 
     private Font cachedFont;
 
+    //private Sprite checkSprite;
+    //private Sprite circleSprite;
+    //private Material material;
+
     private void Awake()
     {
         EnsureView();
@@ -50,8 +54,10 @@ public class QuestView : MonoBehaviour
     private static string GetCheckPrefix(bool completed)
     {
         return completed
-            ? "[<color=#95FFC8>\u2713</color>]"
-            : "[<color=#D6E3F3>\u25CB</color>]";
+            //? Sprite.checkSprite;
+           // : Sprite.circleSprite;
+           ? "[<color=#95FFC8>x</color>] "
+           : "[<color=#D6E3F3>  </color>] ";
     }
 
     private void EnsureView()
@@ -137,6 +143,17 @@ public class QuestView : MonoBehaviour
         questText.supportRichText = true;
         questText.lineSpacing = 1.12f;
         ApplyAnchors(questText.rectTransform, new Vector2(0.08f, 0.11f), new Vector2(0.92f, 0.80f));
+
+       // if(material == null && circleSprite != null)
+       // {
+        //    material = new Material(Shader.Find("UI/Default"));
+          //  material.mainTexture = circleSprite.texture;
+        //}
+        
+       // if(material != null)
+        //{
+          //  questText.material = material;
+        //}
     }
 
     private Text CreateText(
