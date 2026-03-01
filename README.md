@@ -13,7 +13,14 @@ Describe how you used one of the tools that we learned in Week 6- Gizmos, the Un
 Describe how intermediate-level vector math is being used in your project. This could be any of following the vector topics we talked about in Weeks 7-8: dot products, surface normals, coordinate space transformations, or raycasting (or sphere-casting, box-casting, etc). Make sure to clearly describe the feature that required this math; what concept you used and why it's relevant; and how the code works.
 
 ### Tina Meng
-Put your individual check-in Devlog here.
+1. I built one of the two light sources. 
+2. I imported and created the scenes. 
+    - Create and drew terrain
+    - Drag prefabs in imported assets into the scene
+        - Environment (flowers, trees, rocks)
+        - Town (houses, cargos...)
+3. I imported and created the skybox.
+    - 
 ### Team Member Name 2
 Put your individual check-in Devlog here.
 ### Team Member Name 3
