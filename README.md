@@ -24,7 +24,39 @@ Describe how intermediate-level vector math is being used in your project. This 
 3. I imported and created the skybox. (link in open-source assets)
     - Based on the youtube link included in open-source assets
 4. I coded
-    - 
+    - I forked the github repository and created unity project.
+    - I created scripts that determiend basic coding structure of the project.
+    - I coded in several scripts. 
+        - I WAS THE FIRST TO EDIT THE PROJECT. AND ALL THE FOLLOWING METHODS WERE DELECTED BY OTHER GROUP MEMBERS BECAUSE THEY FOUND OTHER WAYS TO RUN THE CODES. THAT'S WHY YOU CAN'T FIND THESE THINGS IN CURRENT CODES. BUT YOU CAN STILL FIND THEM IN COMMITS.  
+        - NPC
+            - public virtual void Interaction()
+            - void EnableDialogue()
+            - protected virtual void Update()
+            - protected virtual void Start()
+        - Clerk
+            - public override void Interaction()
+        - Cat
+            - public override void Interaction()
+            - private void JustDoIt(string animatorString, CatState newState, int questNumber)
+            - CatState enum
+        - GameController
+            - private void Awake()
+            - created event NPCAction
+            - created list "quests"
+            - public void CompleteQuest(int questNumber)
+        - Quest
+            - QuestState enum
+            - public void ListofQuests()
+    - I established the base of dialogue
+        - I WAS THE FIRST TO EDIT THE DIALOGUE. AND ANOTHER GROUP MEMBER CAME LATER TO GO ON DOING THE DIALOGUE STUFF. THE SCRIPTS AND UNITY WORK STILL APPEARS IN THE PROJECT, BUT THAT GROUP MEMBER DIDN'T FOLLOW MY WORK, INSTEAD SHE USED OTHER SCRIPTS TO CREATE DIALOGUE.
+        - Dialogue Manager.cs
+            - public void StartDialogue(Dialogue dialogue)
+            - private void Awake()
+        - Dialogue.cs
+        - And related works in unity
+    - I debugged the quest UI problem of the checking UI didn't appear in itch but works in unity.
+
+
 
 
 ### Team Member Name 2
