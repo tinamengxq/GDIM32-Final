@@ -2,9 +2,6 @@
 ## Check-In
 ### Devlog Questions
 
-#### Personal Devlog:
-1. What did you contribute to the project at this stage? 
-2. Also, reflect on how useful your Proposal and break-down (from the W7 activity) has been so far to actually building your project.
 #### Team Devlog:
 1. Prompt A:
 
@@ -57,8 +54,15 @@ Contribution:
         - And related works in unity
     - I debugged the quest UI problem of the checking UI didn't appear in itch but works in unity.
 
-
-
+Reflection: 
+1. I wrote the break down for the game. And when I was editing the scripts, it worked pretty well. It was really helpful when I was construction the scripts.
+2. I followed inheritance pattern in proposal for NPC and Items. It worked well and was helpful for my construction.
+3. I used finite state machine pattern in proposal. It was helpful for my construction.
+    - I used fsm for cat and quests. 
+    - Group members deleted my fsm for cat and quests.
+    - They wrote another fsm for quests.
+4. I used singleton patterns in proposal for many controllers. It was helpful for me to reach codes directly.
+5. We planed to import 3D assets for the town. But we didn't state clearly on which asset to import, which led to great disagreements between group members. We should state clearly next time in a game proposal on what kind of asset should we import. 
 
 ### Team Member Name 2
 Put your individual check-in Devlog here.
