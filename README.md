@@ -65,40 +65,57 @@ Reflection:
 5. We planed to import 3D assets for the town. But we didn't state clearly on which asset to import, which led to great disagreements between group members. We should state clearly next time in a game proposal on what kind of asset should we import. 
 
 ### Yuxin Ding
-In this stage of the project, my mainly contributions focues on the player control system, specifically first-person camera control, and interaction detection. While other team members worked on dialogue, quest structure, and UI systems, I was mainly responsible for implementing and refining how the player moves, looks around and successfully interact with objects in the final build.
+In this stage of the project, my main contributions focued on the player control system, specifically first-person camera control, and interaction detection. While other team members worked on dialogue, quest structure, and UI systems, I was mainly responsible for implementing and refining how the player moves, looks around and successfully interact with objects in the final build.
 
 
 1. I implemented and refined the first-person mouse look system in the Plyaer script.
    This included:
-
 
    - Enabling full 360° horizontal rotation
    - Clamping vertical rotation between -90 and 90 degrees to prevent unnatural flipping
    - Adjusting the `lookSensitivity` variable to improve responsiveness
    - Tuning sensitivity values so the player does not need excessive mouse movement to reach a desired viewing angle
 
-
-Through testing and iteration, I modified sensitivity values to achieve smoother and more natural camera control. These adjustments directly improved the gameplay experience.
+Through testing and iteration, I modified sensitivity values to achieve smoother and more natural camera control. At the beginning, the rotation felt too slow and required large mouse movement. These adjustments directly improved the gameplay experience.
 
 
 2. I also worked on refining how interactable objects are detected and how interaction is triggered.
    The system evaluates:
 
-
    - View direction using `Vector3.Dot`
    - Distance between the player and target
    - A threshold value to determine whether an object is within interaction range
   
-
 I adjusted parameters such as:
-
 
 - viewDotThreshold
 - Maximum interaction distance
 - Detection conditions to ensure that pressing the F key reliably triggers interaction
 
+Sometimes objects were not detected even when the player was looking at them. I tested different angle and distance values and adjusted them to make the interaction feel more natural and consistent. My goal was to ensure that the full interaction flow works smoothly: detection, prompt display, and successful triggering.
 
-My main goal was to make interaction detection consistent and intuitive. I tested edge cases where objects failed to be detected due to angle or distance and adjusted the values to ensure smoother gameplay flow.
+
+Additional contributions:
+In addition to gameplay systems, I slightly adjusted the Directional Light’s position and color to better differentiate it from the Spot Light.
+I also collaborated with teammates in searching for environmental assets and contributed to a small portion of scene setup.
+
+Besides coding, I often played the game during development to test interaction feel and identify issues. When I noticed detection problems or camera control discomfort, I reported them and adjusted the related values. Although everyone participated in playtesting, I personally focused more on identifying small usability issues, questioning them and together we found solutions out to fix them.
+
+These contributions were supportive in nature, while my primary focus remained on player control and interaction functionality.
+
+**Reflection:**
+Our original proposal outlined the general interaction concept quite clearly, but during development, I realized that implementing interaction systems requires careful tuning of numerical thresholds and detection logic.
+
+Small values such as camera sensitivity, interaction distance, and view-angle thresholds significantly impact player experience.
+
+In the future project, I would plan player control tuning earlier in development if needed. And define technical interaction methods more clearly in the proposal.
+I also learned that documenting value adjustments during testing is important for better tracking and team communication.
+
+
+Overall, working on the player control and interaction system helped me understand how core gameplay feel depends heavily on precise implementation and iteration.
+
+
+
 ### Team Member Name 3
 Put your individual check-in Devlog here.
 
