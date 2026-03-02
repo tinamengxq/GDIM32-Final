@@ -135,10 +135,9 @@ On the side of the dialogue system, the previous team members probably set up a 
 In addition, I also added global background music and got a resident AudioManager (Singleton) to control the background sound.
 
 
-####Reflection：
+**Reflection:**
 
-
-I think our plan is quite detailed. It is really useful when you first start writing code. Just follow it step by step. But in the middle of the period, I found the problem - the proposal was too idealistic and didn't think much about whether I could do it or not. Some designs look very good, but when you really write them, you will find that they are not so simple. In the end, many places can only be simplified or achieved in other ways.
+I think our plan is quite detailed. It is really useful when I first start writing code. Just follow it step by step. But in the middle of the period, I found the problem - the proposal was too idealistic and didn't think much about whether I could do it or not. Some designs look very good, but when you really write them, you will find that they are not so simple. In the end, many places can only be simplified or achieved in other ways.
 
 
 When I do the project in the future, I will be more realistic at the proposal stage. First, I will find out how much I can do, which functions must be completed, and which can be added later.
