@@ -122,8 +122,26 @@ Overall, working on the player control and interaction system helped me understa
 
 
 
-### Team Member Name 3
-Put your individual check-in Devlog here.
+### Yan Zhang 
+I mainly continue to add things on the basis of what others have built before. I first imported the cat's resource package, put the cat prefab into the scene, assigned it an Animator Controller, and then wrote code in Cat.cs to control the animation. Now I use Animator.Play(stateName) to switch different states. The cat itself is also an interactive object. It still uses the original NPC interaction logic, triggered by Interact(), so the whole system is connected to the original interaction structure.
+
+
+Then I finished the logic of the cat-related item. The quest system is managed by GameController.cs. The quest state is controlled there. When the state changes, an event is triggered. UI.cs refreshes the quest panel when it receives the event. In this part, I mainly rationalized the logic, because although the variables were changing at the beginning, the UI was not updated, and it looked like there was no response. And I have completely connected the chain of "quest state change → trigger event → UI update".
+
+
+On the side of the dialogue system, the previous team members probably set up a basic structure, but the actual logic was not finished. Instead of directly following her structure, I rearranged the process of triggering and advancing the dialogue, and made Interact() call the DialogueManager. After the conversation ends, it can also affect the quest state, so the dialogue system and the quest system are connected.
+
+
+In addition, I also added global background music and got a resident AudioManager (Singleton) to control the background sound.
+
+
+####Reflection：
+
+
+I think our plan is quite detailed. It is really useful when you first start writing code. Just follow it step by step. But in the middle of the period, I found the problem - the proposal was too idealistic and didn't think much about whether I could do it or not. Some designs look very good, but when you really write them, you will find that they are not so simple. In the end, many places can only be simplified or achieved in other ways.
+
+
+When I do the project in the future, I will be more realistic at the proposal stage. First, I will find out how much I can do, which functions must be completed, and which can be added later.
 
 
 ## Final Submission
@@ -131,15 +149,12 @@ Put your individual check-in Devlog here.
 Put your group Devlog here.
 
 
-### Team Member Name 1
-Put your individual final Devlog here.
-### Team Member Name 2
-Put your individual final Devlog here.
-### Team Member Name 3
-Put your individual final Devlog here.
-
 ## Open-Source Assets
 - [Guide on how to make dialogue](https://www.youtube.com/watch?v=_nRzoTzeyxU)
 - [Guide on how to import skybox](https://www.youtube.com/shorts/oDXfDGw-rwg)
 - [Skybox](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
 - [3D model for environment "Fantasy Landscape"](https://assetstore.unity.com/packages/3d/environments/fantasy-landscape-103573)
+- [Cat mode](https://assetstore.unity.com/packages/3d/characters/animals/mammals/stylized-cats-pack-324086)
+- [Cat item](https://assetstore.unity.com/packages/3d/props/interior/cat-s-paradise-constructor-329708)
+- [NPC 3D modle](https://assetstore.unity.com/packages/3d/characters/humanoids/casual-1-anime-girl-characters-185076)
+- [Bckground music](https://assetstore.unity.com/packages/audio/music/music-cat-in-a-box-free-single-306461)
