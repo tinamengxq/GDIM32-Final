@@ -69,7 +69,7 @@ In this stage of the project, my main contributions focued on the player control
 
 
 **What I mainly did:**
-1. I implemented and refined the first-person mouse look system in the Plyaer script.
+1. I implemented and refined the first-person mouse look system in the Player script.
    This included:
 
    - Enabling full 360° horizontal rotation
