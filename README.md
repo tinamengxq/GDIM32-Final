@@ -81,7 +81,24 @@ In this stage of the project, my mainly contributions focues on the player contr
 Through testing and iteration, I modified sensitivity values to achieve smoother and more natural camera control. These adjustments directly improved the gameplay experience.
 
 
+2. I also worked on refining how interactable objects are detected and how interaction is triggered.
+   The system evaluates:
 
+
+   - View direction using `Vector3.Dot`
+   - Distance between the player and target
+   - A threshold value to determine whether an object is within interaction range
+  
+
+I adjusted parameters such as:
+
+
+- viewDotThreshold
+- Maximum interaction distance
+- Detection conditions to ensure that pressing the F key reliably triggers interaction
+
+
+My main goal was to make interaction detection consistent and intuitive. I tested edge cases where objects failed to be detected due to angle or distance and adjusted the values to ensure smoother gameplay flow.
 ### Team Member Name 3
 Put your individual check-in Devlog here.
 
