@@ -83,7 +83,7 @@ Through testing and iteration, I modified sensitivity values to achieve smoother
 2. I also worked on refining how interactable objects are detected and how interaction is triggered.
    The system evaluates:
 
-   - View direction using `Vector3.Dot`
+   - View direction using Vector3.Dot
    - Distance between the player and target
    - A threshold value to determine whether an object is within interaction range
   
