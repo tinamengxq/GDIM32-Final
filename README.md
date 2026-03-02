@@ -157,3 +157,4 @@ Put your group Devlog here.
 - [Cat item](https://assetstore.unity.com/packages/3d/props/interior/cat-s-paradise-constructor-329708)
 - [NPC 3D modle](https://assetstore.unity.com/packages/3d/characters/humanoids/casual-1-anime-girl-characters-185076)
 - [Bckground music](https://assetstore.unity.com/packages/audio/music/music-cat-in-a-box-free-single-306461)
+- [Cat eating sound effect](https://pixabay.com/sound-effects/search/cat%20eat/)
