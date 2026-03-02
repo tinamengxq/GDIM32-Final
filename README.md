@@ -98,6 +98,7 @@ Sometimes objects were not detected even when the player was looking at them. I 
 
 
 **Additional contributions:**
+
 In addition to gameplay systems, I slightly adjusted the Directional Light’s position and color to better differentiate it from the Spot Light.
 I also collaborated with teammates in searching for environmental assets and contributed to a small portion of scene setup.
 
@@ -108,6 +109,7 @@ These contributions were supportive in nature, while my primary focus remained o
 
 
 **Reflection:**
+
 Our original proposal outlined the general interaction concept quite clearly, but during development, I realized that implementing interaction systems requires careful tuning of numerical thresholds and detection logic. I realized that even a small change in the dot threshold (for example from 0.7 to 0.85) significantly changed how strict the detection felt.
 
 Small values such as camera sensitivity, interaction distance, and view-angle thresholds significantly impact player experience.
