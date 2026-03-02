@@ -96,7 +96,9 @@ I adjusted parameters such as:
 Sometimes objects were not detected even when the player was looking at them. I tested different angle and distance values and adjusted them to make the interaction feel more natural and consistent. My goal was to ensure that the full interaction flow works smoothly: detection, prompt display, and successful triggering.<br><br>
 
 
+3. I found audio source for cat eating animation.<br><br>
 
+   
 **Additional contributions:**
 
 In addition to gameplay systems, I slightly adjusted the Directional Light’s position and color to better differentiate it from the Spot Light.
@@ -105,7 +107,6 @@ I also collaborated with teammates in searching for environmental assets and con
 Besides coding, I often played the game during development to test interaction feel and identify issues. When I noticed detection problems or camera control discomfort, I reported them and adjusted the related values. Although everyone participated in playtesting, I personally focused more on identifying small usability issues, questioning them and together we found solutions out to fix them.
 
 These contributions were supportive in nature, while my primary focus remained on player control and interaction functionality.<br><br>
-
 
 
 **Reflection:**
