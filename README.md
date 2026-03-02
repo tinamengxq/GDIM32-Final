@@ -64,8 +64,9 @@ Reflection:
 4. I used singleton patterns in proposal for many controllers. It was helpful for me to reach codes directly.
 5. We planed to import 3D assets for the town. But we didn't state clearly on which asset to import, which led to great disagreements between group members. We should state clearly next time in a game proposal on what kind of asset should we import. 
 
-### Team Member Name 2
+### Yuxin Ding
 Put your individual check-in Devlog here.
+
 ### Team Member Name 3
 Put your individual check-in Devlog here.
 
