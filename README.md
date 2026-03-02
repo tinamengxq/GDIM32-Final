@@ -65,7 +65,7 @@ Reflection:
 5. We planed to import 3D assets for the town. But we didn't state clearly on which asset to import, which led to great disagreements between group members. We should state clearly next time in a game proposal on what kind of asset should we import. 
 
 ### Yuxin Ding
-In this stage of the project, my main contributions focued on the player control system, specifically first-person camera control, and interaction detection. While other team members worked on dialogue, quest structure, and UI systems, I was mainly responsible for implementing and refining how the player moves, looks around and successfully interact with objects in the final build.
+In this stage of the project, my main contributions focued on the player control system, specifically first-person camera control, and interaction detection. While other team members worked on dialogue, quest structure, and UI systems, I was mainly responsible for implementing and refining how the player moves, looks around and successfully interact with objects in the final build.<br><br>
 
 
 **What I mainly did:**
@@ -93,7 +93,7 @@ I adjusted parameters such as:
 - Maximum interaction distance
 - Detection conditions to ensure that pressing the F key reliably triggers interaction
 
-Sometimes objects were not detected even when the player was looking at them. I tested different angle and distance values and adjusted them to make the interaction feel more natural and consistent. My goal was to ensure that the full interaction flow works smoothly: detection, prompt display, and successful triggering.
+Sometimes objects were not detected even when the player was looking at them. I tested different angle and distance values and adjusted them to make the interaction feel more natural and consistent. My goal was to ensure that the full interaction flow works smoothly: detection, prompt display, and successful triggering.<br><br>
 
 
 
@@ -104,7 +104,7 @@ I also collaborated with teammates in searching for environmental assets and con
 
 Besides coding, I often played the game during development to test interaction feel and identify issues. When I noticed detection problems or camera control discomfort, I reported them and adjusted the related values. Although everyone participated in playtesting, I personally focused more on identifying small usability issues, questioning them and together we found solutions out to fix them.
 
-These contributions were supportive in nature, while my primary focus remained on player control and interaction functionality.
+These contributions were supportive in nature, while my primary focus remained on player control and interaction functionality.<br><br>
 
 
 
