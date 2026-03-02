@@ -80,7 +80,7 @@ In this stage of the project, my main contributions focued on the player control
 Through testing and iteration, I modified sensitivity values to achieve smoother and more natural camera control. At the beginning, the rotation felt too slow and required large mouse movement. These adjustments directly improved the gameplay experience.
 
 
-2. I also worked on refining how interactable objects are detected and how interaction is triggered.
+2. I also worked on refining how interactable objects are detected and how interaction is triggered. I modified the original distance-only interaction logic by introducing directional detection using a dot product. This ensured that interaction only occurs when the player is both close enough and actually facing the NPC.
    The system evaluates:
 
    - View direction using Vector3.Dot
