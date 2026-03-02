@@ -686,6 +686,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4023013654594124, guid: 86263e8355f96ba4ab9fdf4e96c2090f, type: 3}
   m_PrefabInstance: {fileID: 129883181}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &132002163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 132002164}
+  m_Layer: 0
+  m_Name: PlayingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &132002164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132002163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.042, y: 0.062, z: -6.534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &163158188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1115,8 +1146,9 @@ MonoBehaviour:
   eatStateName: Armature|eat
   playStateName: Armature|play
   catFoodPrefab: {fileID: 4968886754583018724, guid: cfc7bcfd6496e4b4396859ea0b5ce285, type: 3}
-  catToyPrefab: {fileID: 8970298223813199644, guid: 4e46bdaf7c60344d38ec3f3a363f350d, type: 3}
+  catToyPrefab: {fileID: 738019856885260223, guid: 9c145732609624bd2aa1c1fd012e2598, type: 3}
   eatingPosition: {fileID: 1480747273}
+  playingPosition: {fileID: 132002164}
 --- !u!82 &354254788
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7656,5 +7688,6 @@ SceneRoots:
   - {fileID: 342401221}
   - {fileID: 754301112}
   - {fileID: 1480747273}
+  - {fileID: 132002164}
   - {fileID: 836172755}
   - {fileID: 71000344}

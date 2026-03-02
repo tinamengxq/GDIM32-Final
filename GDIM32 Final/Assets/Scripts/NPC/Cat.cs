@@ -9,6 +9,7 @@ public class Cat : NPC
     [SerializeField] private GameObject catFoodPrefab;
     [SerializeField] private GameObject catToyPrefab;
     [SerializeField] private Transform eatingPosition;
+    [SerializeField] private Transform playingPosition;
 
     private GameObject food;
     private GameObject toy;
@@ -106,7 +107,7 @@ public class Cat : NPC
 
     private void MakeToyAppear()
     {
-        toy = Instantiate(catToyPrefab, eatingPosition.position, eatingPosition.rotation);
+        toy = Instantiate(catToyPrefab, playingPosition.position, playingPosition.rotation);
         Destroy(toy, 10f); 
     }
 
