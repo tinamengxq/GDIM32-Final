@@ -6,10 +6,8 @@
 1. Prompt A:
 
 Describe how you used one of the tools that we learned in Week 6- Gizmos, the Unity profiler, breakpoints, or version control techniques- to solve a technical issue with your project. Make sure to clearly describe what the problem was; why you picked the tool that you chose; and how you diagnosed and solved the issue.
-2. Prompt B:
-
-Describe how intermediate-level vector math is being used in your project. This could be any of following the vector topics we talked about in Weeks 7-8: dot products, surface normals, coordinate space transformations, or raycasting (or sphere-casting, box-casting, etc). Make sure to clearly describe the feature that required this math; what concept you used and why it's relevant; and how the code works.
-
+**：**
+During development, we faced an issue with interaction targeting. When multiple interactable objects were present in the scene, 
 ### Tina Meng
 Contribution:
 
@@ -80,12 +78,14 @@ In this stage of the project, my main contributions focued on the player control
 Through testing and iteration, I modified sensitivity values to achieve smoother and more natural camera control. At the beginning, the rotation felt too slow and required large mouse movement. These adjustments directly improved the gameplay experience.
 
 
-2. I also worked on refining how interactable objects are detected and how interaction is triggered. I modified the original distance-only interaction logic by introducing directional detection using a dot product. This ensured that interaction only occurs when the player is both close enough and actually facing the NPC.
-   The system evaluates:
+2. I also worked on refining how interactable objects are detected and how interaction is triggered. I refined the interaction targeting system inside the PlayerInteractor component. The system evaluates all active IInteractable objects and selects the best target based on distance and directional alignment from the camera’s perspective.
+   The detection logic calculates:
 
-   - View direction using Vector3.Dot
-   - Distance between the player and target
-   - A threshold value to determine whether an object is within interaction range
+   - The distance from the camera to the target
+   - The direction vector toward the interaction point
+   - The dot product between cameraTransform.forward and the normalized direction to the target
+  
+Only objects within the maximum interaction distance and above a viewDotThreshold are considered valid targets.<br><br>
   
 I adjusted parameters such as:
 
@@ -93,7 +93,7 @@ I adjusted parameters such as:
 - Maximum interaction distance
 - Detection conditions to ensure that pressing the F key reliably triggers interaction
 
-Sometimes objects were not detected even when the player was looking at them. I tested different angle and distance values and adjusted them to make the interaction feel more natural and consistent. My goal was to ensure that the full interaction flow works smoothly: detection, prompt display, and successful triggering.<br><br>
+Sometimes objects were not detected even when the player was looking at them. I tested different angle and distance values and adjusted them to make the interaction feel more natural and consistent. My goal was to ensure that the full interaction flow works smoothly: detection, prompt display, and successful triggering.
 
 
 3. I found audio source for cat eating animation.<br><br>
@@ -111,7 +111,7 @@ These contributions were supportive in nature, while my primary focus remained o
 
 **Reflection:**
 
-Our original proposal outlined the general interaction concept quite clearly, but during development, I realized that implementing interaction systems requires careful tuning of numerical thresholds and detection logic. I realized that even a small change in the dot threshold (for example from 0.7 to 0.85) significantly changed how strict the detection felt.
+Our original proposal outlined the general interaction concept quite clearly, but during development, I realized that implementing interaction systems requires careful tuning of numerical thresholds and detection logic. I realized that even a small change in the dot threshold (for example from 0.7 to 0.85, I forgot what value I have really changed) significantly changed how strict the detection felt.
 
 Small values such as camera sensitivity, interaction distance, and view-angle thresholds significantly impact player experience.
 
