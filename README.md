@@ -65,7 +65,22 @@ Reflection:
 5. We planed to import 3D assets for the town. But we didn't state clearly on which asset to import, which led to great disagreements between group members. We should state clearly next time in a game proposal on what kind of asset should we import. 
 
 ### Yuxin Ding
-Put your individual check-in Devlog here.
+In this stage of the project, my mainly contributions focues on the player control system, specifically first-person camera control, and interaction detection. While other team members worked on dialogue, quest structure, and UI systems, I was mainly responsible for implementing and refining how the player moves, looks around and successfully interact with objects in the final build.
+
+
+1. I implemented and refined the first-person mouse look system in the Plyaer script.
+   This included:
+
+
+   - Enabling full 360° horizontal rotation
+   - Clamping vertical rotation between -90 and 90 degrees to prevent unnatural flipping
+   - Adjusting the `lookSensitivity` variable to improve responsiveness
+   - Tuning sensitivity values so the player does not need excessive mouse movement to reach a desired viewing angle
+
+
+Through testing and iteration, I modified sensitivity values to achieve smoother and more natural camera control. These adjustments directly improved the gameplay experience.
+
+
 
 ### Team Member Name 3
 Put your individual check-in Devlog here.
