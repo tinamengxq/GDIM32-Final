@@ -3,10 +3,6 @@
 ### Devlog Questions
 
 #### Team Devlog:
-1. Prompt A:
-
-Describe how you used one of the tools that we learned in Week 6- Gizmos, the Unity profiler, **breakpoints**, or version control techniques- to solve a technical issue with your project. Make sure to clearly describe what the problem was; why you picked the tool that you chose; and how you diagnosed and solved the issue.
-**：**
 During development, we faced an issue with interaction targeting. When multiple interactable objects were present in the scene, the system would sometimes select an object that was within range but not clearly centered in the player’s view. This made interaction feel inconsistent and occasionally caused the wrong object to be triggered.
 To solve this problem, I used **breakpoints** in Visual Studio to debug the interaction selection logic inside the `PlayerInteractor` script.
 I chose breakpoints instead of the Unity Profiler or Gizmos because the issue was not related to performance or visual alignment, but a logic-based selection problem. I needed to inspect runtime variable values directly inside the targeting algorithm.
@@ -21,6 +17,20 @@ The interaction detection happens in the `FindBestInteractable()` method. The sy
 
 
 By stepping through the code while multiple objects were visible on screen, I was able to observe the actual dot values, distance values, and final score comparisons in real time. I noticed that small differences in dot values significantly affected which object was selected, especially when two interactable objects were close to each other.
+
+
+During debugging, I also discovered a second issue. Occasionally, when the player pressed the interaction key (F) while facing the Clerk, a different NPC such as the Cat would be triggered instead. At first, this appeared to be another scoring imbalance problem. However, after stepping through the loop with breakpoints, I realized that more interactable objects were being detected than were visibly present in the scene.
+
+Although only two NPC characters appeared in the game world, there were actually four objects implementing the IInteractable interface. In some cases, the NPC interaction script had been attached both to the visible character model and to an empty parent GameObject. As a result, the targeting system was evaluating duplicate interaction sources for the same character. Because the scoring system selects the highest calculated score, the invisible or unintended object could sometimes win the comparison, leading to inconsistent interaction behavior.
+
+After identifying this hierarchy issue, we reorganized the scene structure to ensure that each NPC had only one active interactable component attached to the correct object. This eliminated duplicate targets and made the interaction behavior consistent.
+
+
+To further understand the impact of these variables, I experimented with adjusting the `viewDotThreshold` and observing how changes in the scoring weight influenced object selection behavior. Through this process, I confirmed that the interaction system was functioning as designed, but that small parameter differences could noticeably affect user perception of targeting accuracy. This helped me better understand the sensitivity of weighted scoring systems in gameplay mechanics.
+
+
+**Reflection:**
+This debugging process improved my understanding of how mathematical weighting directly affects player experience. Although the interaction system was logically correct, small imbalances in scoring weights produced unintuitive results during gameplay. Through step-by-step inspection in Visual Studio code using breakpoints, I learned the importance of validating gameplay systems not only through theoretical correctness but also through practical testing in realistic scenarios. In future projects, I would consider visualizing targeting data or implementing raycast-based prioritization earlier in development to reduce ambiguity in object selection.
 
 
 
@@ -78,6 +88,7 @@ Reflection:
 4. I used singleton patterns in proposal for many controllers. It was helpful for me to reach codes directly.
 5. We planed to import 3D assets for the town. But we didn't state clearly on which asset to import, which led to great disagreements between group members. We should state clearly next time in a game proposal on what kind of asset should we import. 
 
+
 ### Yuxin Ding
 In this stage of the project, my main contributions focued on the player control system, specifically first-person camera control, and interaction detection. While other team members worked on dialogue, quest structure, and UI systems, I was mainly responsible for implementing and refining how the player moves, looks around and successfully interact with objects in the final build.<br><br>
 
@@ -127,7 +138,7 @@ These contributions were supportive in nature, while my primary focus remained o
 
 **Reflection:**
 
-Our original proposal outlined the general interaction concept quite clearly, but during development, I realized that implementing interaction systems requires careful tuning of numerical thresholds and detection logic. I realized that even a small change in the dot threshold (for example from 0.7 to 0.85, I forgot what value I have really changed) significantly changed how strict the detection felt.
+Our original proposal outlined the general interaction concept quite clearly, but during development, I realized that implementing interaction systems requires careful tuning of numerical thresholds and detection logic. I realized that even a small change in the dot threshold significantly changed how strict the detection felt.
 
 Small values such as camera sensitivity, interaction distance, and view-angle thresholds significantly impact player experience.
 
@@ -166,12 +177,13 @@ Put your group Devlog here.
 
 
 ## Open-Source Assets
-- [Guide on how to make dialogue](https://www.youtube.com/watch?v=_nRzoTzeyxU)
-- [Guide on how to import skybox](https://www.youtube.com/shorts/oDXfDGw-rwg)
-- [Skybox](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633)
-- [3D model for environment "Fantasy Landscape"](https://assetstore.unity.com/packages/3d/environments/fantasy-landscape-103573)
-- [Cat mode](https://assetstore.unity.com/packages/3d/characters/animals/mammals/stylized-cats-pack-324086)
-- [Cat item](https://assetstore.unity.com/packages/3d/props/interior/cat-s-paradise-constructor-329708)
-- [NPC 3D modle](https://assetstore.unity.com/packages/3d/characters/humanoids/casual-1-anime-girl-characters-185076)
-- [Bckground music](https://assetstore.unity.com/packages/audio/music/music-cat-in-a-box-free-single-306461)
-- [Cat eating sound effect](https://pixabay.com/sound-effects/search/cat%20eat/)
+- [Guide on how to make dialogue](https://www.youtube.com/watch?v=_nRzoTzeyxU) -Learning how to structure and trigger the dialogue system in Unity
+- [Guide on how to import skybox](https://www.youtube.com/shorts/oDXfDGw-rwg) -Learning how to correctly import and apply a skybox to the scene
+- [Skybox](https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633) -Providing the background sky environment for the town scene
+- [3D model for environment "Fantasy Landscape"](https://assetstore.unity.com/packages/3d/environments/fantasy-landscape-103573) -Creating environmental elements such as terrain, trees, rocks, and decorative objects
+- [Cat model](https://assetstore.unity.com/packages/3d/characters/animals/mammals/stylized-cats-pack-324086) -The interactive cat NPC character
+- [Cat item](https://assetstore.unity.com/packages/3d/props/interior/cat-s-paradise-constructor-329708) -Props related to the cat quest interaction
+- [NPC 3D model](https://assetstore.unity.com/packages/3d/characters/humanoids/casual-1-anime-girl-characters-185076) -The interactive clerk NPC character
+- [Cat eating sound effect](https://pixabay.com/sound-effects/search/cat%20eat/) -Audio feedback during the cat eating animation
+- [Bckground music](https://assetstore.unity.com/packages/audio/music/music-cat-in-a-box-free-single-306461) -Providing background music during gameplay
+
