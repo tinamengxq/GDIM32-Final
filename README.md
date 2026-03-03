@@ -1,8 +1,6 @@
 # GDIM32-Final
 ## Check-In
-### Devlog Questions
-
-#### Team Devlog:
+### Team Devlog:
 During development, we faced an issue with interaction targeting. When multiple interactable objects were present in the scene, the system would sometimes select an object that was within range but not clearly centered in the player’s view. This made interaction feel inconsistent and occasionally caused the wrong object to be triggered.
 To solve this problem, I used **breakpoints** in Visual Studio to debug the interaction selection logic inside the `PlayerInteractor` script.
 I chose breakpoints instead of the Unity Profiler or Gizmos because the issue was not related to performance or visual alignment, but a logic-based selection problem. I needed to inspect runtime variable values directly inside the targeting algorithm.
