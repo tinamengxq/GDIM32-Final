@@ -5,9 +5,25 @@
 #### Team Devlog:
 1. Prompt A:
 
-Describe how you used one of the tools that we learned in Week 6- Gizmos, the Unity profiler, breakpoints, or version control techniques- to solve a technical issue with your project. Make sure to clearly describe what the problem was; why you picked the tool that you chose; and how you diagnosed and solved the issue.
+Describe how you used one of the tools that we learned in Week 6- Gizmos, the Unity profiler, **breakpoints**, or version control techniques- to solve a technical issue with your project. Make sure to clearly describe what the problem was; why you picked the tool that you chose; and how you diagnosed and solved the issue.
 **：**
-During development, we faced an issue with interaction targeting. When multiple interactable objects were present in the scene, 
+During development, we faced an issue with interaction targeting. When multiple interactable objects were present in the scene, the system would sometimes select an object that was within range but not clearly centered in the player’s view. This made interaction feel inconsistent and occasionally caused the wrong object to be triggered.
+To solve this problem, I used **breakpoints** in Visual Studio to debug the interaction selection logic inside the `PlayerInteractor` script.
+I chose breakpoints instead of the Unity Profiler or Gizmos because the issue was not related to performance or visual alignment, but a logic-based selection problem. I needed to inspect runtime variable values directly inside the targeting algorithm.
+
+The interaction detection happens in the `FindBestInteractable()` method. The system iterates through all active IInteractable objects and evaluates them based on:
+
+- Distance from the camera to the interaction point
+- Direction vector from the camera to the object
+- Dot product between `cameraTransform.forward` and the normalized direction vector
+- A threshold value (viewDotThreshold)
+- A scoring formula that prioritizes centered objects
+
+
+By stepping through the code while multiple objects were visible on screen, I was able to observe the actual dot values, distance values, and final score comparisons in real time. I noticed that small differences in dot values significantly affected which object was selected, especially when two interactable objects were close to each other.
+
+
+
 ### Tina Meng
 Contribution:
 
