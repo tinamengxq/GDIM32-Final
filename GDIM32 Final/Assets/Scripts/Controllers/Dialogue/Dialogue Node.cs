@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Dialogue Line", menuName = "ScriptableObjects/DialogueLine", order = 1)]
 public class DialogueNode : ScriptableObject
 {
-    public string _lines;
+    [TextArea(2,4)]
+    public string[] _lines;
     public string _speakerName;
     public bool hasChoice;
     public List<DialogueChoice> choices = new List<DialogueChoice>();

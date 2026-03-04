@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 //OKben 
 public class DialogueManager : MonoBehaviour
@@ -20,8 +21,9 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private Player player;
     [SerializeField] private DialogueView dialogueView;
-    [SerializeField] private string defaultSpeaker = "Casual1";
+    [SerializeField] private string defaultSpeaker = "Clerk";
     private DialogueNode currentNode;
+    private int currentLine;
 
     private readonly Queue<string> pendingLines = new Queue<string>();
     private string currentSpeaker;
@@ -75,18 +77,19 @@ public class DialogueManager : MonoBehaviour
         //string speaker = string.IsNullOrWhiteSpace(dialogue.nameOFNPC) ? defaultSpeaker : dialogue.nameOFNPC;
         //StartLinearDialogue(speaker, dialogue.sentences);
         ResolveReferences();
-        if (dialogueView == null && startNode == null)
+        if (dialogueView == null || startNode == null || startNode._lines == null || startNode._lines.Length == 0)
         {
             return;
         }
         OpenDialogue();
         
-        pendingLines.Clear();
+        //pendingLines.Clear();
         waitingForChoice = false;
-        
-        currentNode = startNode;
         onDialogueFinished = Finished;
 
+        currentNode = startNode;
+        currentLine = 0;
+        
         dialogueView.ClearChoices();
         ShowCurrentNode();
 
@@ -107,9 +110,11 @@ public class DialogueManager : MonoBehaviour
         }
         currentSpeaker = speaker;
 
-        dialogueView.ClearChoices();
-        bool Continue = !currentNode.hasChoice || currentNode.choices == null || currentNode.choices.Count == 0;
-        dialogueView.ShowLine(currentSpeaker, currentNode._lines, Continue);
+        //dialogueView.ClearChoices();
+        string line = currentNode._lines[currentLine];
+        //bool Continue = !currentNode.hasChoice || currentNode.choices == null || currentNode.choices.Count == 0;
+        bool Continue = currentLine < currentNode._lines.Length - 1;
+        dialogueView.ShowLine(currentSpeaker, line , Continue);
 
         if(!Continue)
         {
@@ -163,17 +168,24 @@ public class DialogueManager : MonoBehaviour
 
     private void AdvanceNodeOrFinish()
     {
-        if (waitingForChoice)
+        if(waitingForChoice)
         {
         return;
         }
-        if (currentNode != null)
+        if(currentNode == null)
         {
-        currentNode = currentNode.nextNode;
+            ShowNextLineOrFinish();
+            return;
+        }
+        currentLine += 1;
+
+        if(currentLine >= currentNode._lines.Length)
+        {
+            FinishAndClose();
+            return;
+        }
         ShowCurrentNode();
-        return;
-        }
-        ShowNextLineOrFinish();
+        
     }
 
     public void StartLinearDialogue(string speaker, IEnumerable<string> lines, Action onFinished = null)
@@ -232,6 +244,7 @@ public class DialogueManager : MonoBehaviour
         pendingLines.Clear();
         currentNode = null;
         onDialogueFinished = null;
+        currentLine = 0;
 
         if (dialogueView != null)
         {
