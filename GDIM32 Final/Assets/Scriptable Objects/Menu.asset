@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8241ca5be3246e5997f9cdb47b0c7a, type: 3}
   m_Name: Menu
   m_EditorClassIdentifier: 
-  _lines: 
-  _speakerName: 
-  hasChoice: 0
-  choices: []
+  _lines:
+  - It's nice to have a new cat! What do you want to ask?
+  _speakerName: Clerk
+  hasChoice: 1
+  choices:
+  - label: Get some training on caring for the cat!
+    nextNode: {fileID: 11400000, guid: 4286c05266f2b4cffa0a438434dfa467, type: 2}
+  - label: More about cat knowledge?
+    nextNode: {fileID: 11400000, guid: f3a1213f6d8bc4ffd86f02edb03019e9, type: 2}
   nextNode: {fileID: 0}

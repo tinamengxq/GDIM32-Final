@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8241ca5be3246e5997f9cdb47b0c7a, type: 3}
   m_Name: Training Completed
   m_EditorClassIdentifier: 
-  _lines: 
-  _speakerName: 
+  _lines:
+  - You have completed your training as a new parent, and I believe you are now fully
+    prepared.
+  - Thank you for choosing to be her mother. I wish you both peace and joy as you
+    journey through every season together!
+  _speakerName: Clerk
   hasChoice: 0
   choices: []
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: a48b48a3429b14cf4a2d52a3be38a853, type: 2}

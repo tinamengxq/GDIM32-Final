@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8241ca5be3246e5997f9cdb47b0c7a, type: 3}
   m_Name: Training Feed Completed
   m_EditorClassIdentifier: 
-  _lines: 
-  _speakerName: 
+  _lines:
+  - You're back? Great! She's full now, so it's time to learn the most important
+    skill for a cat owner!
+  - 'Go back to your cat and pick up the toy next to her! Play with her! '
+  _speakerName: Clerk
   hasChoice: 0
   choices: []
   nextNode: {fileID: 0}

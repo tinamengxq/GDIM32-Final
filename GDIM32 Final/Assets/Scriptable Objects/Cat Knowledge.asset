@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8241ca5be3246e5997f9cdb47b0c7a, type: 3}
   m_Name: Cat Knowledge
   m_EditorClassIdentifier: 
-  _lines: 
-  _speakerName: 
+  _lines:
+  - Want to learn more about cat?
+  - Cats swallow their food rather than chew it.
+  - 'The functions of cat whiskers: They help cats hunt, sense humidity and airflow,
+    measure distance, and maintain balance.'
+  - Cats rarely meow at other cats. They may growl, hiss, or purr at other felines,
+    but meowing is mostly reserved for humans.
+  - Do not keep cats in cages, as this can hinder their growth and development and
+    cause them to become timid and irritable.
+  - A cat's nose print is unique, similar to a human fingerprint.
+  _speakerName: Clerk
   hasChoice: 0
   choices: []
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: a48b48a3429b14cf4a2d52a3be38a853, type: 2}

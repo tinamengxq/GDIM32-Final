@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8241ca5be3246e5997f9cdb47b0c7a, type: 3}
   m_Name: Training Not Started
   m_EditorClassIdentifier: 
-  _lines: 
-  _speakerName: 
+  _lines:
+  - Everyone would be nervous when they get their first cat. Don't worry, I will
+    tell you what to do!
+  - 'I will give you two tasks. If you don''t finish the two quests well, you might
+    lose her. '
+  - 'The most important thing we have to do when raising a cat is to feed her. Now
+    go to your cat and grab the food next to her. '
+  - 'After she enjoys her food, come back to me for the second task! '
+  _speakerName: Clerk
   hasChoice: 0
   choices: []
   nextNode: {fileID: 0}
