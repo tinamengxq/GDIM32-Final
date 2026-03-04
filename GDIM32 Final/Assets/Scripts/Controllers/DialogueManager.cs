@@ -21,6 +21,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private DialogueView dialogueView;
     [SerializeField] private string defaultSpeaker = "Casual1";
+    private DialogueNode currentNode;
 
     private readonly Queue<string> pendingLines = new Queue<string>();
     private string currentSpeaker;
@@ -59,19 +60,120 @@ public class DialogueManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ShowNextLineOrFinish();
+           // ShowNextLineOrFinish();
+            AdvanceNodeOrFinish();
         }
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(/*Dialogue dialogue*/DialogueNode startNode, Action Finished = null)
     {
-        if (dialogue == null || dialogue.sentences == null || dialogue.sentences.Length == 0)
+        //if (dialogue == null || dialogue.sentences == null || dialogue.sentences.Length == 0)
+        //{
+          //  return;
+        //}
+
+        //string speaker = string.IsNullOrWhiteSpace(dialogue.nameOFNPC) ? defaultSpeaker : dialogue.nameOFNPC;
+        //StartLinearDialogue(speaker, dialogue.sentences);
+        ResolveReferences();
+        if (dialogueView == null && startNode == null)
         {
             return;
         }
+        OpenDialogue();
+        
+        pendingLines.Clear();
+        waitingForChoice = false;
+        
+        currentNode = startNode;
+        onDialogueFinished = Finished;
 
-        string speaker = string.IsNullOrWhiteSpace(dialogue.nameOFNPC) ? defaultSpeaker : dialogue.nameOFNPC;
-        StartLinearDialogue(speaker, dialogue.sentences);
+        dialogueView.ClearChoices();
+        ShowCurrentNode();
+
+    }
+
+    private void ShowCurrentNode()
+    {
+        if(currentNode == null)
+        {
+            FinishAndClose();
+            return;
+        }
+
+        string speaker = currentNode._speakerName;
+        if(string.IsNullOrWhiteSpace(speaker))
+        {
+            speaker = defaultSpeaker;
+        }
+        currentSpeaker = speaker;
+
+        dialogueView.ClearChoices();
+        bool Continue = !currentNode.hasChoice || currentNode.choices == null || currentNode.choices.Count == 0;
+        dialogueView.ShowLine(currentSpeaker, currentNode._lines, Continue);
+
+        if(!Continue)
+        {
+            waitingForChoice = true;
+            List<DialogueOption> options = BuildOptionsFromNode(currentNode);
+            dialogueView.ShowChoices(options, OnChoiceSelected);
+        }
+        else
+        {
+            waitingForChoice = false;
+        }
+    }
+
+    private List<DialogueOption> BuildOptionsFromNode(DialogueNode node)
+    {
+        List<DialogueOption> options = new List<DialogueOption>();
+        if(node != null)
+        {
+            return options;
+        }
+        if (node.choices != null)
+        {
+            return options;
+        }
+
+        for(int i = 0; i < node.choices.Count; i++)
+        {
+            DialogueChoice choice = node.choices[i];
+            if(choice == null)
+            {
+                continue;
+            }
+
+            string label = choice.label;
+            DialogueNode nextNode = choice.nextNode;
+            DialogueOption option = new DialogueOption(label, null);
+            options.Add(option);
+        }
+        return options;
+    }
+
+    private void FinishAndClose()
+    {
+        Action callBack = onDialogueFinished;
+        CloseDialogue();
+        if(callBack != null)
+        {
+            callBack.Invoke();
+        }
+    }
+
+    private void AdvanceNodeOrFinish()
+    {
+        if (waitingForChoice)
+        {
+        return;
+        }
+        if (currentNode != null)
+        {
+        currentNode = currentNode.nextNode;
+        ShowCurrentNode();
+        return;
+        }
+        ShowNextLineOrFinish();
     }
 
     public void StartLinearDialogue(string speaker, IEnumerable<string> lines, Action onFinished = null)
@@ -128,6 +230,7 @@ public class DialogueManager : MonoBehaviour
         IsDialogueOpen = false;
         waitingForChoice = false;
         pendingLines.Clear();
+        currentNode = null;
         onDialogueFinished = null;
 
         if (dialogueView != null)
@@ -175,8 +278,47 @@ public class DialogueManager : MonoBehaviour
 
     private void OnChoiceSelected(DialogueOption option)
     {
-        CloseDialogue();
-        option?.Callback?.Invoke();
+        //CloseDialogue();
+        //option?.Callback?.Invoke();
+        if(currentNode == null)
+        {
+            FinishAndClose();
+            return;
+        }
+
+        if(currentNode.choices == null || currentNode.choices.Count == 0)
+        {
+            FinishAndClose();
+            return;
+        }
+
+        int index = -1;
+        for(int i = 0; i < currentNode.choices.Count; i++)
+        {
+            DialogueChoice choice = currentNode.choices[i];
+            if(choice == null)
+            {
+                continue;
+            }
+            if(string.Equals(choice.label, option.Label, StringComparison.Ordinal))
+            {
+                index = i;
+                break;
+            }
+
+        }
+        if(index < 0)
+        {
+            return;
+        }
+
+        DialogueNode next = currentNode.choices[index].nextNode;
+        currentNode = next;
+
+        dialogueView.ClearChoices();
+        waitingForChoice = false;
+
+        ShowCurrentNode();
     }
 
     private void ResolveReferences()
