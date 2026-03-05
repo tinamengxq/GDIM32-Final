@@ -132,12 +132,12 @@ public class DialogueView : MonoBehaviour
             }
             Button button = CreateChoiceButton(label);
             runtimeButtons.Add(button);
-            int Index = 1;
+            int index = 1;
             button.onClick.AddListener(delegate
             {
                 if(ChoiceSelected != null)
                 {
-                    ChoiceSelected.Invoke(Index);
+                    ChoiceSelected.Invoke(index);
                 }
             });
         }
