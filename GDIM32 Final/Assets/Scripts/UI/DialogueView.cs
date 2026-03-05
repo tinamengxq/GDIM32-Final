@@ -43,26 +43,98 @@ public class DialogueView : MonoBehaviour
         }
     }
 
-    public void ShowChoices(IList<DialogueManager.DialogueOption> options, Action<DialogueManager.DialogueOption> onSelected)
+//    public void ShowChoices(IList<DialogueManager.DialogueOption> options, Action<DialogueManager.DialogueOption> onSelected)
+//    {
+//        EnsureView();
+//        ClearChoices();
+
+        //if (options == null || options.Count == 0)
+        //{
+        //    return;
+        //}
+
+        //continueHintText.gameObject.SetActive(false);
+
+      //  for (int i = 0; i < options.Count; i++)
+    //    {
+   //         DialogueManager.DialogueOption selectedOption = options[i];
+  //          Button button = CreateChoiceButton(selectedOption.Label);
+//            runtimeButtons.Add(button);
+
+    //        button.onClick.AddListener(() => onSelected?.Invoke(selectedOption));
+  //      }
+//    }
+
+    public void ShowNodes(DialogueNode node, int currentLineIndex, string defaultSpeaker, bool showContinueHint)
     {
         EnsureView();
-        ClearChoices();
-
-        if (options == null || options.Count == 0)
+        SetVisible(true);
+        if(node == null)
         {
+            speakerText.text = "";
+            bodyText.text = "";
+            continueHintText.gameObject.SetActive(true);
+            ClearChoices();
+            choicesContainer.gameObject.SetActive(true);
             return;
         }
 
-        continueHintText.gameObject.SetActive(false);
-
-        for (int i = 0; i < options.Count; i++)
+        string speaker = node._speakerName;
+        if (string.IsNullOrWhiteSpace(speaker))
         {
-            DialogueManager.DialogueOption selectedOption = options[i];
-            Button button = CreateChoiceButton(selectedOption.Label);
-            runtimeButtons.Add(button);
-
-            button.onClick.AddListener(() => onSelected?.Invoke(selectedOption));
+            speaker = defaultSpeaker;
         }
+
+        string line = "";
+        if(node._lines.Length > 0 && currentLineIndex >= 0 && currentLineIndex < node._lines.Length)
+        {
+            line = node._lines[currentLineIndex];
+
+        }
+
+        speakerText.text = speaker;
+        bodyText.text = line;
+        ClearChoices();
+        choicesContainer.gameObject.SetActive(false);
+        continueHintText.gameObject.SetActive(showContinueHint);
+        if (showContinueHint)
+        {
+            continueHintText.text = "F: Continue";
+        }
+
+    }
+
+    public void ShowNodeChoices(DialogueNode node, Action<int> ChoiceSelected)
+    {
+        EnsureView();
+        ClearChoices();
+        if(node == null || node.choices == null || node.choices.Count == 0)
+        {
+            if (choicesContainer != null)
+            {
+                choicesContainer.gameObject.SetActive(false);
+            }
+        }
+        continueHintText.gameObject.SetActive(false);
+        choicesContainer.gameObject.SetActive(true);
+
+        for(int i = 0; i <node.choices.Count; i++)
+        {
+            DialogueChoice choice = node.choices[i];
+            if(choice == null)
+            {
+                continue;
+            }
+            string label = choice.label;
+            if (string.IsNullOrWhiteSpace(label))
+            {
+                label = "Choice " + (i+1);
+            }
+            Button button = CreateChoiceButton(label);
+            
+        }
+
+        
     }
 
     public void ClearChoices()
