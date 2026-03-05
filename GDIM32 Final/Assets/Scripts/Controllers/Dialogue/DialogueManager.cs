@@ -106,21 +106,38 @@ public class DialogueManager : MonoBehaviour
         string speaker = currentNode._speakerName;
         if(string.IsNullOrWhiteSpace(speaker))
         {
-            speaker = defaultSpeaker;
+            speaker = defaultSpeaker;   
         }
         currentSpeaker = speaker;
 
+        if(currentNode._lines == null || currentNode._lines.Length == 0)
+        {
+            FinishAndClose();
+            return;
+        }
+        currentLine = Mathf.Clamp(currentLine, 0, currentNode._lines.Length -1);
+
         //dialogueView.ClearChoices();
-        string line = currentNode._lines[currentLine];
+       //string line = currentNode._lines[currentLine];
         //bool Continue = !currentNode.hasChoice || currentNode.choices == null || currentNode.choices.Count == 0;
         bool Continue = currentLine < currentNode._lines.Length - 1;
-        dialogueView.ShowNodes(currentNode, 0, currentSpeaker, Continue);
+        dialogueView.ShowNodes(currentNode, currentLine, currentSpeaker, Continue);
 
         if(!Continue)
         {
-            waitingForChoice = true;
-            List<DialogueOption> options = BuildOptionsFromNode(currentNode);
-            dialogueView.ShowNodeChoices(currentNode, OnChoiceSelected);
+            if(currentNode.choices != null && currentNode.choices.Count > 0)
+            {
+                waitingForChoice = true;
+                dialogueView.ShowNodeChoices(currentNode, OnChoiceSelected);
+            }
+            //waitingForChoice = true;
+            //List<DialogueOption> options = BuildOptionsFromNode(currentNode);
+            //dialogueView.ShowNodeChoices(currentNode, OnChoiceSelected);
+            else
+            {
+                waitingForChoice = false;
+                
+            }
         }
         else
         {
@@ -131,11 +148,11 @@ public class DialogueManager : MonoBehaviour
     private List<DialogueOption> BuildOptionsFromNode(DialogueNode node)
     {
         List<DialogueOption> options = new List<DialogueOption>();
-        if(node != null)
+        if(node == null)
         {
             return options;
         }
-        if (node.choices != null)
+        if (node.choices == null)
         {
             return options;
         }
@@ -149,7 +166,7 @@ public class DialogueManager : MonoBehaviour
             }
 
             string label = choice.label;
-            DialogueNode nextNode = choice.nextNode;
+            //DialogueNode nextNode = choice.nextNode;
             DialogueOption option = new DialogueOption(label, null);
             options.Add(option);
         }
@@ -170,7 +187,7 @@ public class DialogueManager : MonoBehaviour
     {
         if(waitingForChoice)
         {
-        return;
+            return;
         }
         if(currentNode == null)
         {
