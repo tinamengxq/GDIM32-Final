@@ -28,20 +28,20 @@ public class DialogueView : MonoBehaviour
         }
     }
 
-    public void ShowLine(string speaker, string line, bool showContinueHint)
-    {
-        EnsureView();
-        SetVisible(true);
+//    public void ShowLine(string speaker, string line, bool showContinueHint)
+ //   {
+  //      EnsureView();
+//        SetVisible(true);
 
-        speakerText.text = speaker;
-        bodyText.text = line;
+       // speakerText.text = speaker;
+       // bodyText.text = line;
 
-        continueHintText.gameObject.SetActive(showContinueHint);
-        if (showContinueHint)
-        {
-            continueHintText.text = "F: Continue";
-        }
-    }
+     //   continueHintText.gameObject.SetActive(showContinueHint);
+   //     if (showContinueHint)
+       // {
+         //   continueHintText.text = "F: Continue";
+     //   }
+   // }
 
 //    public void ShowChoices(IList<DialogueManager.DialogueOption> options, Action<DialogueManager.DialogueOption> onSelected)
 //    {
@@ -104,7 +104,7 @@ public class DialogueView : MonoBehaviour
 
     }
 
-    public void ShowNodeChoices(DialogueNode node, Action<int> ChoiceSelected)
+    public void ShowNodeChoices(DialogueNode node, Action<int> OnChoiceSelected)
     {
         EnsureView();
         ClearChoices();
@@ -131,7 +131,15 @@ public class DialogueView : MonoBehaviour
                 label = "Choice " + (i+1);
             }
             Button button = CreateChoiceButton(label);
-            
+            runtimeButtons.Add(button);
+            int Index = 1;
+            button.onClick.AddListener(delegate
+            {
+                if(OnChoiceSelected != null)
+                {
+                    OnChoiceSelected.Invoke(Index);
+                }
+            });
         }
 
         
@@ -344,5 +352,10 @@ public class DialogueView : MonoBehaviour
         rect.anchorMax = anchorMax;
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
+    }
+
+    internal void ShowNodeChoices(DialogueNode currentNode, List<DialogueManager.DialogueOption> options)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -114,13 +114,13 @@ public class DialogueManager : MonoBehaviour
         string line = currentNode._lines[currentLine];
         //bool Continue = !currentNode.hasChoice || currentNode.choices == null || currentNode.choices.Count == 0;
         bool Continue = currentLine < currentNode._lines.Length - 1;
-        dialogueView.ShowLine(currentSpeaker, line , Continue);
+        dialogueView.ShowNodes(currentNode, 0, currentSpeaker, Continue);
 
         if(!Continue)
         {
             waitingForChoice = true;
             List<DialogueOption> options = BuildOptionsFromNode(currentNode);
-            dialogueView.ShowChoices(options, OnChoiceSelected);
+            dialogueView.ShowNodeChoices(currentNode, /*options*/OnChoiceSelected);
         }
         else
         {
@@ -174,7 +174,7 @@ public class DialogueManager : MonoBehaviour
         }
         if(currentNode == null)
         {
-            ShowNextLineOrFinish();
+            //ShowNextLineOrFinish();
             return;
         }
         currentLine += 1;
@@ -188,54 +188,54 @@ public class DialogueManager : MonoBehaviour
         
     }
 
-    public void StartLinearDialogue(string speaker, IEnumerable<string> lines, Action onFinished = null)
-    {
-        ResolveReferences();
-        if (dialogueView == null || lines == null)
-        {
-            return;
-        }
+//    public void StartLinearDialogue(string speaker, IEnumerable<string> lines, Action onFinished = null)
+  //  {
+   //     ResolveReferences();
+     //   if (dialogueView == null || lines == null)
+       // {
+         //   return;
+        //}
 
-        pendingLines.Clear();
-        foreach (string line in lines)
-        {
-            if (!string.IsNullOrWhiteSpace(line))
-            {
-                pendingLines.Enqueue(line);
-            }
-        }
+//        pendingLines.Clear();
+  //      foreach (string line in lines)
+    //    {
+      //      if (!string.IsNullOrWhiteSpace(line))
+        //    {
+          //      pendingLines.Enqueue(line);
+            //}
+//        }
 
-        if (pendingLines.Count == 0)
-        {
-            return;
-        }
+  //      if (pendingLines.Count == 0)
+    //    {
+      //      return;
+        //}
 
-        OpenDialogue();
-        waitingForChoice = false;
-        onDialogueFinished = onFinished;
-        currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
+//        OpenDialogue();
+   //     waitingForChoice = false;
+     //   onDialogueFinished = onFinished;
+      //  currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
 
-        dialogueView.ClearChoices();
-        ShowNextLineOrFinish();
-    }
+  //      dialogueView.ClearChoices();
+//        ShowNextLineOrFinish();
+    //}
 
-    public void StartChoiceDialogue(string speaker, string prompt, IList<DialogueOption> options)
-    {
-        ResolveReferences();
-        if (dialogueView == null || options == null || options.Count == 0)
-        {
-            return;
-        }
+  //  public void StartChoiceDialogue(string speaker, string prompt, IList<DialogueOption> options)
+    //{
+//        ResolveReferences();
+  //      if (dialogueView == null || options == null || options.Count == 0)
+    //    {
+      //      return;
+        //}
 
-        OpenDialogue();
-        waitingForChoice = true;
-        currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
-        onDialogueFinished = null;
-        pendingLines.Clear();
+//        OpenDialogue();
+  //      waitingForChoice = true;
+    //    currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
+      //  onDialogueFinished = null;
+        //pendingLines.Clear();
 
-        dialogueView.ShowLine(currentSpeaker, prompt, false);
-        dialogueView.ShowChoices(options, OnChoiceSelected);
-    }
+//        dialogueView.ShowNodes(currentNode, 0, prompt, false);
+  //      dialogueView.ShowNodeChoices(options, OnChoiceSelected);
+    //}
 
     public void CloseDialogue()
     {
@@ -275,19 +275,19 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ShowNextLineOrFinish()
-    {
-        if (pendingLines.Count == 0)
-        {
-            Action callback = onDialogueFinished;
-            CloseDialogue();
-            callback?.Invoke();
-            return;
-        }
+//   private void ShowNextLineOrFinish()
+  //  {
+    //    if (pendingLines.Count == 0)
+      //  {
+        //    Action callback = onDialogueFinished;
+          //  CloseDialogue();
+            //callback?.Invoke();
+           // return;
+        //}
 
-        string line = pendingLines.Dequeue();
-        dialogueView.ShowLine(currentSpeaker, line, true);
-    }
+//        string line = pendingLines.Dequeue();
+  //      dialogueView.ShowNodes(currentnode, currentSpeaker, line, true);
+    //}
 
     private void OnChoiceSelected(DialogueOption option)
     {
