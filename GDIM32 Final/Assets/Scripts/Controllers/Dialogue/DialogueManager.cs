@@ -120,7 +120,7 @@ public class DialogueManager : MonoBehaviour
         {
             waitingForChoice = true;
             List<DialogueOption> options = BuildOptionsFromNode(currentNode);
-            dialogueView.ShowNodeChoices(currentNode, OnChoiceSelected(1));
+            dialogueView.ShowNodeChoices(currentNode, OnChoiceSelected);
         }
         else
         {
@@ -289,7 +289,7 @@ public class DialogueManager : MonoBehaviour
   //      dialogueView.ShowNodes(currentnode, currentSpeaker, line, true);
     //}
 
-    private void OnChoiceSelected(DialogueOption option)
+    private void OnChoiceSelected(/*DialogueOption option*/ int index)
     {
         //CloseDialogue();
         //option?.Callback?.Invoke();
@@ -305,28 +305,34 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        int index = -1;
-        for(int i = 0; i < currentNode.choices.Count; i++)
-        {
-            DialogueChoice choice = currentNode.choices[i];
-            if(choice == null)
-            {
-                continue;
-            }
-            if(string.Equals(choice.label, option.Label, StringComparison.Ordinal))
-            {
-                index = i;
-                break;
-            }
-
-        }
-        if(index < 0)
+        if(index < 0 || index >= currentNode.choices.Count)
         {
             return;
         }
 
+        //int index = -1;
+       // for(int i = 0; i < currentNode.choices.Count; i++)
+        //{
+          //  DialogueChoice choice = currentNode.choices[i];
+            //if(choice == null)
+            //{
+              //  continue;
+            //}
+            //if(string.Equals(choice.label, option.Label, StringComparison.Ordinal))
+            //{
+               // index = i;
+                //break;
+            //}
+
+        //}
+//        if(index < 0)
+  //      {
+    //        return;
+      //  }
+
         DialogueNode next = currentNode.choices[index].nextNode;
         currentNode = next;
+        currentLine = 0;
 
         dialogueView.ClearChoices();
         waitingForChoice = false;

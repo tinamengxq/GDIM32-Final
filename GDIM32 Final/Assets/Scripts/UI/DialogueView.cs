@@ -214,7 +214,7 @@ public class DialogueView : MonoBehaviour
                 TextAnchor.MiddleLeft);
         }
         speakerText.font = cachedFont;
-        speakerText.fontSize = 56;
+        speakerText.fontSize = 24;
         speakerText.fontStyle = FontStyle.Bold;
         speakerText.alignment = TextAnchor.MiddleLeft;
         ApplyAnchors(speakerText.rectTransform, new Vector2(0.03f, 0.82f), new Vector2(0.97f, 0.97f));
@@ -231,7 +231,7 @@ public class DialogueView : MonoBehaviour
                 TextAnchor.UpperLeft);
         }
         bodyText.font = cachedFont;
-        bodyText.fontSize = 40;
+        bodyText.fontSize = 16;
         bodyText.fontStyle = FontStyle.Normal;
         bodyText.alignment = TextAnchor.UpperLeft;
         ApplyAnchors(bodyText.rectTransform, new Vector2(0.03f, 0.38f), new Vector2(0.97f, 0.78f));
@@ -248,7 +248,7 @@ public class DialogueView : MonoBehaviour
                 TextAnchor.MiddleRight);
         }
         continueHintText.font = cachedFont;
-        continueHintText.fontSize = 32;
+        continueHintText.fontSize = 10;
         continueHintText.fontStyle = FontStyle.Italic;
         continueHintText.alignment = TextAnchor.MiddleRight;
         continueHintText.color = new Color(0.9f, 0.9f, 0.9f, 0.95f);
@@ -295,7 +295,7 @@ public class DialogueView : MonoBehaviour
 
         Text text = textObject.GetComponent<Text>();
         text.font = cachedFont;
-        text.fontSize = 34;
+        text.fontSize = 16;
         text.alignment = TextAnchor.MiddleCenter;
         text.color = new Color(0.08f, 0.08f, 0.08f, 1f);
         text.text = label;
@@ -354,8 +354,8 @@ public class DialogueView : MonoBehaviour
         rect.offsetMax = Vector2.zero;
     }
 
-    internal void ShowNodeChoices(DialogueNode currentNode, List<DialogueManager.DialogueOption> options)
-    {
-        throw new NotImplementedException();
-    }
+    //internal void ShowNodeChoices(DialogueNode currentNode, List<DialogueManager.DialogueOption> options)
+    //{
+      //  throw new NotImplementedException();
+    //}
 }
