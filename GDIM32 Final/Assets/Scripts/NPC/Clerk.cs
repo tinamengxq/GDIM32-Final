@@ -16,6 +16,10 @@ public class Clerk : NPC
 
     public override void Interact()
     {
+    if (Input.GetKeyDown(KeyCode.F))
+    {
+      Debug.Log("F clicked");
+    }
         if (DialogueManager.Instance == null)
         {
             Debug.LogError("[Clerk] DialogueManager not found.");
@@ -31,11 +35,11 @@ public class Clerk : NPC
 
         //List<DialogueManager.DialogueOption> options = new List<DialogueManager.DialogueOption>
         //{
-         //   new DialogueManager.DialogueOption("Quest Training", OnQuestTrainingSelected),
-           // new DialogueManager.DialogueOption("Cat Knowledge", OnCatKnowledgeSelected)
+        //   new DialogueManager.DialogueOption("Quest Training", OnQuestTrainingSelected),
+         //  new DialogueManager.DialogueOption("Cat Knowledge", OnCatKnowledgeSelected)
         //};
 
-        //DialogueManager.Instance.StartChoiceDialogue(speakerName, "What do you want to ask?", options);
+       // DialogueManager.Instance.StartChoiceDialogue(speakerName, "What do you want to ask?", options);
     }
 
     private void OnQuestTrainingSelected()
