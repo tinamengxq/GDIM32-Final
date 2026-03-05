@@ -120,7 +120,7 @@ public class DialogueManager : MonoBehaviour
         {
             waitingForChoice = true;
             List<DialogueOption> options = BuildOptionsFromNode(currentNode);
-            dialogueView.ShowNodeChoices(currentNode, /*options*/OnChoiceSelected);
+            dialogueView.ShowNodeChoices(currentNode, options);
         }
         else
         {

@@ -104,7 +104,7 @@ public class DialogueView : MonoBehaviour
 
     }
 
-    public void ShowNodeChoices(DialogueNode node, Action<int> OnChoiceSelected)
+    public void ShowNodeChoices(DialogueNode node, Action<int> ChoiceSelected)
     {
         EnsureView();
         ClearChoices();
@@ -135,9 +135,9 @@ public class DialogueView : MonoBehaviour
             int Index = 1;
             button.onClick.AddListener(delegate
             {
-                if(OnChoiceSelected != null)
+                if(ChoiceSelected != null)
                 {
-                    OnChoiceSelected.Invoke(Index);
+                    ChoiceSelected.Invoke(Index);
                 }
             });
         }
