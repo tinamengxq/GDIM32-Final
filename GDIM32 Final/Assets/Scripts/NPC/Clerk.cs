@@ -26,7 +26,7 @@ public class Clerk : NPC
             return;
         }
 
-        if(menuNode != null)
+        if(menuNode == null)
         {
             Debug.Log("Dialogue Node menu missing on clerk.");
             return;
