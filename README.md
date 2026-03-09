@@ -184,4 +184,4 @@ Put your group Devlog here.
 - [NPC 3D model](https://assetstore.unity.com/packages/3d/characters/humanoids/casual-1-anime-girl-characters-185076) -The interactive clerk NPC character
 - [Cat eating sound effect](https://pixabay.com/sound-effects/search/cat%20eat/) -Audio feedback during the cat eating animation
 - [Background music](https://assetstore.unity.com/packages/audio/music/music-cat-in-a-box-free-single-306461) -Providing background music during gameplay
-
+  [Start Game UI font](https://www.dafont.com/search.php?q=magicretro) -Provide artistic font for the Start Game UI
