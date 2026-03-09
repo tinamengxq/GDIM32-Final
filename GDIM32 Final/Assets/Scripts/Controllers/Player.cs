@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] float fallbackGroundY = 0f;
 
     [SerializeField] float maxReasonableCameraOffset = 3f;
-    [SerializeField] Vector3 defaultCameraLocalPosition = new Vector3(0f, 1.62f, 0f);
+    [SerializeField] Vector3 defaultCameraLocalPosition = new Vector3(0.6f, 0.55f,-14f);
 
     CharacterController cc;
     float xRot, vVel;
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
             else if (Camera.main) cameraTransform = Camera.main.transform;
         }
 
-        FixCamLocal();
+        //FixCamLocal();
         (GetComponent<PlayerInteractor>() ?? gameObject.AddComponent<PlayerInteractor>()).SetCameraTransform(cameraTransform);
     }
 
@@ -181,7 +181,7 @@ public class Player : MonoBehaviour
         vVel = -2f;
     }
 
-    void FixCamLocal()
+    public void FixCamLocal()
     {
         if (!cameraTransform || !cameraTransform.IsChildOf(transform)) return;
         var lp = cameraTransform.localPosition;
