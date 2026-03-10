@@ -170,8 +170,15 @@ When I do the project in the future, I will be more realistic at the proposal st
 
 
 ## Final Submission
-### Group Devlog
+### Team Devlog
 Put your group Devlog here.
+**Only one Devlog needs to be written per team for this prompt.**
+
+**Prompt: Describe each of the 3 design patterns used in your final project, especially where in the code they can be found and why they helped structure your project. You must be able to explain why all of these design patterns were useful in building your game.**
+
+### Tina Meng
+### Yuxin Ding
+### Yan Zhang
 
 
 ## Open-Source Assets
