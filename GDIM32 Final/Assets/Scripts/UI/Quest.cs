@@ -8,18 +8,29 @@ public enum QuestState
     Doing,
     Finished
 }
+
 public class Quest : MonoBehaviour
 {
+    public static Quest Instance; 
     public string questContent;
     public QuestState questState;
 
     public List<string> quests = new List<string>();
-    
-    public void ListofQuests()
+
+    private void Awake()
     {
-        quests.Add(questContent = "Feed The Cat.");
-        quests.Add(questContent = "Play With The Cat.");
+        Instance = this;  
     }
 
-    
+    public void AcceptQuest(string questName)
+    {
+        quests.Add(questName);
+        Debug.Log("Quest Accepted: " + questName);
+    }
+
+    public void ListofQuests()
+    {
+        quests.Add("Feed The Cat.");
+        quests.Add("Play With The Cat.");
+    }
 }

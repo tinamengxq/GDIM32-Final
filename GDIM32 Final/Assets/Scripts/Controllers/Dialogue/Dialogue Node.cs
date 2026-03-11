@@ -11,6 +11,9 @@ public class DialogueNode : ScriptableObject
     public bool hasChoice;
     public List<DialogueChoice> choices = new List<DialogueChoice>();
     public DialogueNode nextNode;
+
+    public Quest questToGive;
+
 }
 
 [System.Serializable]

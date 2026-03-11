@@ -102,9 +102,13 @@ public class DialogueManager : MonoBehaviour
             FinishAndClose();
             return;
         }
+        if (currentNode.questToGive != null)
+        {
+            Quest.Instance.AcceptQuest(currentNode.questToGive.questContent);
+        }
 
         string speaker = currentNode._speakerName;
-        if(string.IsNullOrWhiteSpace(speaker))
+        if (string.IsNullOrWhiteSpace(speaker))
         {
             speaker = defaultSpeaker;   
         }
@@ -185,73 +189,85 @@ public class DialogueManager : MonoBehaviour
 
     private void AdvanceNodeOrFinish()
     {
-        if(waitingForChoice)
+        if (waitingForChoice)
         {
             return;
         }
-        if(currentNode == null)
+
+        if (currentNode == null)
         {
-            //ShowNextLineOrFinish();
             return;
         }
+
         currentLine += 1;
 
-        if(currentLine >= currentNode._lines.Length)
+        if (currentLine >= currentNode._lines.Length)
         {
-            FinishAndClose();
+            
+            if (currentNode.nextNode != null)
+            {
+                currentNode = currentNode.nextNode;
+                currentLine = 0;
+                ShowCurrentNode();
+            }
+            else
+            {
+                FinishAndClose();
+            }
+
             return;
         }
+
         ShowCurrentNode();
-        
     }
 
-//    public void StartLinearDialogue(string speaker, IEnumerable<string> lines, Action onFinished = null)
-  //  {
-   //     ResolveReferences();
-     //   if (dialogueView == null || lines == null)
-       // {
-         //   return;
-        //}
-
-//        pendingLines.Clear();
-  //      foreach (string line in lines)
-    //    {
-      //      if (!string.IsNullOrWhiteSpace(line))
-        //    {
-          //      pendingLines.Enqueue(line);
-            //}
-//        }
-
-  //      if (pendingLines.Count == 0)
-    //    {
-      //      return;
-        //}
-
-//        OpenDialogue();
-   //     waitingForChoice = false;
-     //   onDialogueFinished = onFinished;
-      //  currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
-
-  //      dialogueView.ClearChoices();
-//        ShowNextLineOrFinish();
+    //    public void StartLinearDialogue(string speaker, IEnumerable<string> lines, Action onFinished = null)
+    //  {
+    //     ResolveReferences();
+    //   if (dialogueView == null || lines == null)
+    // {
+    //   return;
     //}
 
-  //  public void StartChoiceDialogue(string speaker, string prompt, IList<DialogueOption> options)
-    //{
-//        ResolveReferences();
-  //      if (dialogueView == null || options == null || options.Count == 0)
+    //        pendingLines.Clear();
+    //      foreach (string line in lines)
     //    {
-      //      return;
-        //}
+    //      if (!string.IsNullOrWhiteSpace(line))
+    //    {
+    //      pendingLines.Enqueue(line);
+    //}
+    //        }
 
-//        OpenDialogue();
-  //      waitingForChoice = true;
+    //      if (pendingLines.Count == 0)
+    //    {
+    //      return;
+    //}
+
+    //        OpenDialogue();
+    //     waitingForChoice = false;
+    //   onDialogueFinished = onFinished;
+    //  currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
+
+    //      dialogueView.ClearChoices();
+    //        ShowNextLineOrFinish();
+    //}
+
+    //  public void StartChoiceDialogue(string speaker, string prompt, IList<DialogueOption> options)
+    //{
+    //        ResolveReferences();
+    //      if (dialogueView == null || options == null || options.Count == 0)
+    //    {
+    //      return;
+    //}
+
+    //        OpenDialogue();
+    //      waitingForChoice = true;
     //    currentSpeaker = string.IsNullOrWhiteSpace(speaker) ? defaultSpeaker : speaker;
-      //  onDialogueFinished = null;
-        //pendingLines.Clear();
+    //  onDialogueFinished = null;
+    //pendingLines.Clear();
 
-//        dialogueView.ShowNodes(currentNode, 0, prompt, false);
-  //      dialogueView.ShowNodeChoices(options, OnChoiceSelected);
+    //        dialogueView.ShowNodes(currentNode, 0, prompt, false);
+    //      dialogueView.ShowNodeChoices(options, OnChoiceSelected);
     //}
 
     public void CloseDialogue()
