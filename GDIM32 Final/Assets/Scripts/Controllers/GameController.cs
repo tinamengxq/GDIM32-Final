@@ -167,14 +167,13 @@ public class GameController : MonoBehaviour
 
         OnTrainingStageChanged?.Invoke(CurrentTrainingStage);
 
-        // 强制刷新 CatFood 显示
         CatFood food = FindObjectOfType<CatFood>(true);
         if (food != null)
         {
             food.RefreshVisibility();
         }
 
-        // 强制刷新 CatToy
+     
         CatToy toy = FindObjectOfType<CatToy>(true);
         if (toy != null)
         {

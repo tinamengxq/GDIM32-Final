@@ -50,7 +50,7 @@ public class Clerk : NPC
                 continue;
             }
 
-            // 找到“training”这个选项
+        
             if (choice.label.ToLower().Contains("training"))
             {
                 switch (stage)
