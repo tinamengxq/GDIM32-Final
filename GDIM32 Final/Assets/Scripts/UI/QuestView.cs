@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -50,7 +51,26 @@ public class QuestView : MonoBehaviour
         titleText.text = "Quest List";
         questText.text = builder.ToString().TrimEnd();
     }
+    public void RefreshQuestList(List<string> questList)
+    {
+        EnsureView();
 
+        bool showQuest = questList != null && questList.Count > 0;
+        panel.SetActive(showQuest);
+        if (!showQuest)
+        {
+            return;
+        }
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < questList.Count; i++)
+        {
+            builder.AppendLine($"[<color=#D6E3F3>x</color>] {questList[i]}");
+        }
+
+        titleText.text = "Quest List";
+        questText.text = builder.ToString().TrimEnd();
+    }
     private static string GetCheckPrefix(bool completed)
     {
         return completed

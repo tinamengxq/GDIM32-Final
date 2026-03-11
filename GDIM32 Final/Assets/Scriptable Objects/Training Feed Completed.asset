@@ -20,3 +20,5 @@ MonoBehaviour:
   hasChoice: 0
   choices: []
   nextNode: {fileID: 0}
+  questToGive: Play With The Cat.
+  stageToSet: 3

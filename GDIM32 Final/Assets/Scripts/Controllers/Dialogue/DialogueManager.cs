@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(this);
             return;
         }
 
@@ -97,15 +97,26 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowCurrentNode()
     {
-        if(currentNode == null)
+        Debug.Log("ShowCurrentNode called");
+
+        if (currentNode == null)
         {
+            Debug.Log("currentNode is NULL");
             FinishAndClose();
             return;
         }
-        if (currentNode.questToGive != null)
-        {
-            Quest.Instance.AcceptQuest(currentNode.questToGive.questContent);
-        }
+
+        Debug.Log("Current node = " + currentNode.name);
+
+        //if (!string.IsNullOrWhiteSpace(currentNode.questToGive))
+        //{
+        //    Debug.Log("Trying to accept quest: " + currentNode.questToGive);
+        //    Quest.Instance.AcceptQuest(currentNode.questToGive);
+      //  }
+      //  else
+       // {
+         //   Debug.Log("questToGive is EMPTY on node: " + currentNode.name);
+        //}
 
         string speaker = currentNode._speakerName;
         if (string.IsNullOrWhiteSpace(speaker))
@@ -203,18 +214,31 @@ public class DialogueManager : MonoBehaviour
 
         if (currentLine >= currentNode._lines.Length)
         {
-            
+            Debug.Log("stageToSet on node = " + currentNode.stageToSet + " | node = " + currentNode.name);
+
+            if (!string.IsNullOrWhiteSpace(currentNode.questToGive))
+            {
+                Quest.Instance.AcceptQuest(currentNode.questToGive);
+            }
+
+            Debug.Log("GameController.Instance is null? " + (GameController.Instance == null));
+            Debug.Log("currentNode.stageToSet = " + currentNode.stageToSet);
+
+            if (currentNode.stageToSet != TrainingStage.NotStarted)
+            {
+                GameController.Instance.SetTrainingStage(currentNode.stageToSet);
+                Debug.Log("SetTrainingStage CALLED");
+            }
+
             if (currentNode.nextNode != null)
             {
                 currentNode = currentNode.nextNode;
                 currentLine = 0;
                 ShowCurrentNode();
-            }
-            else
-            {
-                FinishAndClose();
+                return;
             }
 
+            FinishAndClose();
             return;
         }
 

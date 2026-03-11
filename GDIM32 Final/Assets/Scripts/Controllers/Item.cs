@@ -59,6 +59,30 @@ public abstract class Item : MonoBehaviour, IInteractable
         return enabled && gameObject.activeInHierarchy && isVisible;
     }
 
+    private GameController GetController()
+    {
+        if (GameController.Instance != null)
+        {
+            return GameController.Instance;
+        }
+
+        GameController controller = FindObjectOfType<GameController>(true);
+        if (controller != null)
+        {
+            return controller;
+        }
+
+        GameController[] allControllers = Resources.FindObjectsOfTypeAll<GameController>();
+        for (int i = 0; i < allControllers.Length; i++)
+        {
+            if (allControllers[i] != null && allControllers[i].gameObject.scene.isLoaded)
+            {
+                return allControllers[i];
+            }
+        }
+
+        return null;
+    }
     public virtual void Interact()
     {
         if (!CanInteract())
@@ -66,11 +90,14 @@ public abstract class Item : MonoBehaviour, IInteractable
             return;
         }
 
-        GameController controller = GameController.Instance;
+        GameController controller = GetController();
         if (controller == null)
         {
+            Debug.Log("[Item] GameController is still null");
             return;
         }
+
+        Debug.Log("[Item] Interact called on " + gameObject.name);
 
         OnInteract(controller);
         RefreshVisibility();
@@ -89,39 +116,56 @@ public abstract class Item : MonoBehaviour, IInteractable
         RefreshVisibility();
     }
 
-    protected void RefreshVisibility()
+    public void RefreshVisibility()
     {
-        GameController controller = GameController.Instance;
-        bool shouldShow = controller != null && ShouldBeVisible(controller);
+        GameController controller = GetController();
+        if (controller == null)
+        {
+            Debug.Log("[Item] RefreshVisibility: GameController is still null");
+            return;
+        }
 
+        bool shouldShow = ShouldBeVisible(controller);
         isVisible = shouldShow;
 
-        for (int i = 0; i < cachedColliders.Length; i++)
+        if (cachedColliders == null)
         {
-            if (cachedColliders[i] != null)
+            cachedColliders = GetComponentsInChildren<Collider>(true);
+        }
+
+        if (cachedRenderers == null)
+        {
+            cachedRenderers = GetComponentsInChildren<Renderer>(true);
+        }
+
+        foreach (Collider col in cachedColliders)
+        {
+            if (col != null)
             {
-                cachedColliders[i].enabled = shouldShow;
+                col.enabled = shouldShow;
             }
         }
 
-        for (int i = 0; i < cachedRenderers.Length; i++)
+        foreach (Renderer rend in cachedRenderers)
         {
-            if (cachedRenderers[i] != null)
+            if (rend != null)
             {
-                cachedRenderers[i].enabled = shouldShow;
+                rend.enabled = shouldShow;
             }
         }
     }
 
     private void TrySubscribeToGameController()
     {
-        if (isSubscribed || GameController.Instance == null)
+        GameController controller = GetController();
+
+        if (isSubscribed || controller == null)
         {
             return;
         }
 
-        GameController.Instance.OnTrainingStageChanged += HandleGameStateChanged;
-        GameController.Instance.OnInventoryChanged += HandleGameStateChanged;
+        controller.OnTrainingStageChanged += HandleGameStateChanged;
+        controller.OnInventoryChanged += HandleGameStateChanged;
         isSubscribed = true;
     }
 }

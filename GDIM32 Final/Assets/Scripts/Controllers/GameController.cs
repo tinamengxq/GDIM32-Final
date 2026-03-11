@@ -30,14 +30,17 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        Instance = this;
+
+        ResolveSceneReferences();
+        // if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);
-            return;
+       //     Destroy(this);
+        //    return;
         }
 
-        Instance = this;
-        ResolveSceneReferences();
+       // Instance = this;
+       // ResolveSceneReferences();
     }
 
     private void Start()
@@ -122,6 +125,15 @@ public class GameController : MonoBehaviour
 
         HasCatFood = value;
         OnInventoryChanged?.Invoke();
+
+        Item[] items = FindObjectsOfType<Item>(true);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                items[i].RefreshVisibility();
+            }
+        }
     }
 
     public void SetHasCatToy(bool value)
@@ -133,9 +145,18 @@ public class GameController : MonoBehaviour
 
         HasCatToy = value;
         OnInventoryChanged?.Invoke();
+
+        Item[] items = FindObjectsOfType<Item>(true);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                items[i].RefreshVisibility();
+            }
+        }
     }
 
-    private void SetTrainingStage(TrainingStage nextStage)
+    public void SetTrainingStage(TrainingStage nextStage)
     {
         if (CurrentTrainingStage == nextStage)
         {
@@ -143,7 +164,22 @@ public class GameController : MonoBehaviour
         }
 
         CurrentTrainingStage = nextStage;
+
         OnTrainingStageChanged?.Invoke(CurrentTrainingStage);
+
+        // 强制刷新 CatFood 显示
+        CatFood food = FindObjectOfType<CatFood>(true);
+        if (food != null)
+        {
+            food.RefreshVisibility();
+        }
+
+        // 强制刷新 CatToy
+        CatToy toy = FindObjectOfType<CatToy>(true);
+        if (toy != null)
+        {
+            toy.RefreshVisibility();
+        }
     }
 
     private void EnsureQuestItemsExist()
@@ -185,5 +221,9 @@ public class GameController : MonoBehaviour
             itemObject.AddComponent<CatToy>();
         }
 
+    }
+    private void OnDestroy()
+    {
+        Debug.Log("GameController was destroyed");
     }
 }

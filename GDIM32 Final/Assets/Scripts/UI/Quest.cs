@@ -24,9 +24,22 @@ public class Quest : MonoBehaviour
 
     public void AcceptQuest(string questName)
     {
+        if (quests.Contains(questName))
+        {
+            Debug.Log("Quest already exists: " + questName);
+            return;
+        }
+
         quests.Add(questName);
-        Debug.Log("Quest Accepted: " + questName);
-    }
+        Debug.Log("AcceptQuest called: " + questName);
+        Debug.Log("Quest count = " + quests.Count);
+
+        QuestView questView = FindObjectOfType<QuestView>(true);
+        if (questView != null)
+        {
+            questView.RefreshQuestList(quests);
+        }
+}
 
     public void ListofQuests()
     {

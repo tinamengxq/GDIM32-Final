@@ -12,8 +12,8 @@ public class DialogueNode : ScriptableObject
     public List<DialogueChoice> choices = new List<DialogueChoice>();
     public DialogueNode nextNode;
 
-    public Quest questToGive;
-
+    public string questToGive;
+    public TrainingStage stageToSet = TrainingStage.NotStarted;
 }
 
 [System.Serializable]
