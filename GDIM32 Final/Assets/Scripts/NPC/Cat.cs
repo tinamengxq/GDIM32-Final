@@ -51,12 +51,12 @@ public class Cat : NPC
 
         if (controller.CurrentTrainingStage == TrainingStage.FeedAssigned)
         {
-            return true;
+            return controller.HasCatFood;
         }
 
         if (controller.CurrentTrainingStage == TrainingStage.PlayAssigned)
         {
-            return true;
+            return controller.HasCatToy;
         }
 
         return false;
@@ -72,9 +72,9 @@ public class Cat : NPC
 
         if (controller.CurrentTrainingStage == TrainingStage.FeedAssigned)
         {
-           // if (!controller.HasCatFood)
+            if (!controller.HasCatFood)
             {
-            //    return;
+                return;
             }
             
             MakeFoodAppear();
@@ -83,16 +83,16 @@ public class Cat : NPC
             {
                 catAudioSource.Play();
             }
-           // controller.SetHasCatFood(false);
+            controller.SetHasCatFood(false);
             controller.CompleteFeedQuest();
             return;
         }
 
         if (controller.CurrentTrainingStage == TrainingStage.PlayAssigned)
         {
-           // if (!controller.HasCatToy)
+            if (!controller.HasCatToy)
             {
-           //     return;
+                return;
             }
             MakeToyAppear();
             PlayCatAnimation(playStateName);

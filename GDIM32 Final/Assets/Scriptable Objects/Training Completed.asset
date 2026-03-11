@@ -20,4 +20,6 @@ MonoBehaviour:
   _speakerName: Clerk
   hasChoice: 0
   choices: []
-  nextNode: {fileID: 11400000, guid: a48b48a3429b14cf4a2d52a3be38a853, type: 2}
+  nextNode: {fileID: 0}
+  questToGive: 
+  stageToSet: 5

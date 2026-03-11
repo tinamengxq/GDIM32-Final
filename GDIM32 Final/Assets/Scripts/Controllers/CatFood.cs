@@ -21,13 +21,14 @@ public class CatFood : Item
         // bool visible = controller.CurrentTrainingStage == TrainingStage.FeedAssigned && !controller.HasCatFood;
         // Debug.Log("[CatFood] visible = " + visible + " | stage = " + controller.CurrentTrainingStage + " | hasFood = " + controller.HasCatFood);
         // return visible;
-        //return controller.CurrentTrainingStage == TrainingStage.FeedAssigned && !controller.HasCatFood;
-        return true;
+        return controller.CurrentTrainingStage == TrainingStage.FeedAssigned && !controller.HasCatFood;
+        //return true;
     }
     protected override void OnInteract(GameController controller)
     {
         Debug.Log("[CatFood] OnInteract called");
         controller.SetHasCatFood(true);
         Debug.Log("[CatFood] Picked up cat food.");
+        gameObject.SetActive(false);
     }
 }

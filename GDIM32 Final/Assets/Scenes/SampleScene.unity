@@ -3206,7 +3206,6 @@ MonoBehaviour:
   trainingPlayAssignedNode: {fileID: 11400000, guid: 36a3be5400614464fb94434cd2fceb41, type: 2}
   trainingPlayCompletedNode: {fileID: 11400000, guid: 80719ed4177fd447b98e2678d8405fcb, type: 2}
   trainingCompletedNode: {fileID: 11400000, guid: 938da3a4a6ee748a2a53529076968d22, type: 2}
-  catKnowledgeNode: {fileID: 11400000, guid: f3a1213f6d8bc4ffd86f02edb03019e9, type: 2}
 --- !u!4 &713086658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1694388104871467657, guid: 678bf8bc91771fa498236de892b83d1d, type: 3}

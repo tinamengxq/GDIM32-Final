@@ -20,5 +20,7 @@ MonoBehaviour:
   - label: More about cat knowledge?
     nextNode: {fileID: 11400000, guid: f3a1213f6d8bc4ffd86f02edb03019e9, type: 2}
   - label: Get some training on caring for the cat!
-    nextNode: {fileID: 11400000, guid: a0dbeb02a66734b51b3521c43ed02fb4, type: 2}
+    nextNode: {fileID: 11400000, guid: 938da3a4a6ee748a2a53529076968d22, type: 2}
   nextNode: {fileID: 0}
+  questToGive: 
+  stageToSet: 0

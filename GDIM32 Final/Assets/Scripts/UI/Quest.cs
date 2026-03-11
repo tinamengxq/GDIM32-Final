@@ -34,11 +34,11 @@ public class Quest : MonoBehaviour
         Debug.Log("AcceptQuest called: " + questName);
         Debug.Log("Quest count = " + quests.Count);
 
-        QuestView questView = FindObjectOfType<QuestView>(true);
-        if (questView != null)
-        {
-            questView.RefreshQuestList(quests);
-        }
+       // QuestView questView = FindObjectOfType<QuestView>(true);
+       // if (questView != null)
+      //  {
+       //     questView.RefreshQuestList(quests);
+     //   }
 }
 
     public void ListofQuests()
