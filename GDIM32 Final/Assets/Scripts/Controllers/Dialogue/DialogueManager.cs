@@ -328,7 +328,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         //int index = -1;
-       // for(int i = 0; i < currentNode.choices.Count; i++)
+        //for(int i = 0; i < currentNode.choices.Count; i++)
         //{
           //  DialogueChoice choice = currentNode.choices[i];
             //if(choice == null)
@@ -337,17 +337,23 @@ public class DialogueManager : MonoBehaviour
             //}
             //if(string.Equals(choice.label, option.Label, StringComparison.Ordinal))
             //{
-               // index = i;
+              //  index = i;
                 //break;
             //}
 
         //}
-//        if(index < 0)
-  //      {
-    //        return;
-      //  }
+       //if(index < 0)
+        //{
+          //  return;
+        //}
+        DialogueChoice Choice = currentNode.choices[index];
+        if(Choice == null)
+        {
+            FinishAndClose();
+            return;
+        }
 
-        DialogueNode next = currentNode.choices[index].nextNode;
+        DialogueNode next = Choice.nextNode/*currentNode.choices[index].nextNode*/;
         currentNode = next;
         currentLine = 0;
 

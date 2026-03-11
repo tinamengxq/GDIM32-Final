@@ -114,6 +114,7 @@ public class DialogueView : MonoBehaviour
             {
                 choicesContainer.gameObject.SetActive(false);
             }
+            return;
         }
         continueHintText.gameObject.SetActive(false);
         choicesContainer.gameObject.SetActive(true);
@@ -132,7 +133,7 @@ public class DialogueView : MonoBehaviour
             }
             Button button = CreateChoiceButton(label);
             runtimeButtons.Add(button);
-            int index = 1;
+            int index = i;
             button.onClick.AddListener(delegate
             {
                 if(ChoiceSelected != null)
