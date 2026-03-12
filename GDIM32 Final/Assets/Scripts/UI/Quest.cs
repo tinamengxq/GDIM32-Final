@@ -14,14 +14,37 @@ public class Quest : MonoBehaviour
     public static Quest Instance; 
     public string questContent;
     public QuestState questState;
+    [SerializeField] private EndGameNotice endGameNotice;
+
+    private bool endUIShown = false;
+
 
     public List<string> quests = new List<string>();
 
     private void Awake()
     {
+
         Instance = this;  
     }
 
+    private void Update()
+    {
+        CheckGameEnd();
+    }
+
+    public void CheckGameEnd()
+    {
+        if(endUIShown)
+        {
+            return;
+        }
+
+        if (GameController.Instance.AreAllQuestsCompleted())
+        {
+            endUIShown = true;
+            endGameNotice.ShowNotice();
+        }
+    }
     public void AcceptQuest(string questName)
     {
         if (quests.Contains(questName))

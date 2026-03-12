@@ -8,7 +8,7 @@ public class QuestView : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private Text titleText;
     [SerializeField] private Text questText;
-
+    
     private Font cachedFont;
 
     //private Sprite checkSprite;
@@ -20,6 +20,8 @@ public class QuestView : MonoBehaviour
         EnsureView();
         panel.SetActive(false);
     }
+
+
 
     public void Refresh(TrainingStage stage)
     {
@@ -217,4 +219,6 @@ public class QuestView : MonoBehaviour
         rect.offsetMin = Vector2.zero;
         rect.offsetMax = Vector2.zero;
     }
+
+    
 }
