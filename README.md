@@ -179,7 +179,7 @@ Put your group Devlog here.
 
 ### Yuxin Ding
 Between the period of check-in and the final submission of the project, my main contributions focused on implementing additional UI such as the start screen and the in-game welcome/hint page. Also, I contributed to the debugging and optimization of the whole dialogue system.
-My goal was to make sure the quest progression worked correctly across multiple stages and that the player receives clear feedback when entering the game.<br><br>
+My goal was to make sure the quest progression worked correctly across multiple stages and that the player receives clear feedback when entering the game.
 
 
 **Dialogue and Quest System Improvements:**
