@@ -170,14 +170,26 @@ When I do the project in the future, I will be more realistic at the proposal st
 
 
 ## Final Submission
-### Team Devlog
+### Group Devlog
 Put your group Devlog here.
 **Only one Devlog needs to be written per team for this prompt.**
 
 **Prompt: Describe each of the 3 design patterns used in your final project, especially where in the code they can be found and why they helped structure your project. You must be able to explain why all of these design patterns were useful in building your game.**
 
-### Tina Meng
 ### Yuxin Ding
+Between the period of check-in and the final submission of the project, my main contributions foucus on implementing addtional UI such as the start screen and the in-game welcome/hint page. Also, I contribute to the debugging and optimization of the whole dialogue system.
+My goal was to make sure the quest progression worked correctly across multiple stages and that the player receives clear feedback when entering the game.
+
+
+**Dialogue and Quest System Improvements:**
+One of the main systems I worked on was restructuring the interaction flow between the Clerk NPC, the DialogueManager, the GameController, and the rest of scripts that related to the dialogue system process. At this stage, we introduced scriptable objects, but the process was not smooth. The mismatch between the codes and the adjustment of nodes within Unity caused the entire dialogue system to crash. 
+I took over the entire debugging and modification process from the team members, where the Scriptable Objects are all set but found that the dialogue system was crashed, after fixing the problem with "The content of the conversation was linked to the wrong option and Unable to trigger different options (This is how I understand this issue.)", I start to fix the rest of the problems.
+
+
+
+
+
+### Tina Meng
 ### Yan Zhang
 
 
