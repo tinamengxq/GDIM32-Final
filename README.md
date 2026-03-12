@@ -176,17 +176,50 @@ Put your group Devlog here.
 
 **Prompt: Describe each of the 3 design patterns used in your final project, especially where in the code they can be found and why they helped structure your project. You must be able to explain why all of these design patterns were useful in building your game.**
 
+
 ### Yuxin Ding
-Between the period of check-in and the final submission of the project, my main contributions foucus on implementing addtional UI such as the start screen and the in-game welcome/hint page. Also, I contribute to the debugging and optimization of the whole dialogue system.
+Between the period of check-in and the final submission of the project, my main contributions focused on implementing additional UI such as the start screen and the in-game welcome/hint page. Also, I contributed to the debugging and optimization of the whole dialogue system.
 My goal was to make sure the quest progression worked correctly across multiple stages and that the player receives clear feedback when entering the game.
 
 
 **Dialogue and Quest System Improvements:**
-One of the main systems I worked on was restructuring the interaction flow between the Clerk NPC, the DialogueManager, the GameController, and the rest of scripts that related to the dialogue system process. At this stage, we introduced scriptable objects, but the process was not smooth. The mismatch between the codes and the adjustment of nodes within Unity caused the entire dialogue system to crash. 
-I took over the entire debugging and modification process from the team members, where the Scriptable Objects are all set but found that the dialogue system was crashed, after fixing the problem with "The content of the conversation was linked to the wrong option and Unable to trigger different options (This is how I understand this issue.)", I start to fix the rest of the problems.
+
+One of the systems I worked on was improving the interaction flow between the Clerk NPC, the DialogueManager, the GameController, and other scripts related to the dialogue process. When Scriptable Objects were introduced to manage dialogue nodes, mismatches between the code and node configuration in Unity caused the dialogue system to stop functioning correctly. So I took over the debugging and modification process from the team members. The Scriptable Objects were already set up, but the dialogue system had crashed. After team member identified and fixed the problem where the content of the conversation was linked to the wrong option and different dialogue options could not be triggered (this is how I understood the issue), I started fixing the rest of the problems. I focused on debugging this system and stabilizing the dialogue interactions so that the quest logic and dialogue options could work together properly.
 
 
+During testing, I discovered that the player could not reliably receive the training quest from the Clerk NPC. When selecting the training option in the dialogue menu, the quest assignment did not always trigger correctly. To investigate this issue, I reviewed how dialogue interactions communicate with the quest system managed by the **GameController**.
 
+
+The quest progression relies on the variable `CurrentTrainingStage`, which tracks the player’s progress through the training storyline. The **GameController** manages quest progression through methods such as `AssignFeedQuest()`, `CompleteFeedQuest()`, `AssignPlayQuest()`, and `CompletePlayQuest()`. I tested the interaction flow between the **Clerk NPC**, the **DialogueManager**, and the **GameController** to verify that the correct quest assignment method was triggered when the player selected the training option. After adjusting the quest assignment logic and confirming that the correct values were passed to `CurrentTrainingStage`, the feeding quest could be accepted reliably.
+
+
+After the quest could be received properly, I encountered additional issues during the interaction stage. Even when the feeding quest was active, the player sometimes could not complete the interaction with the cat. For example, pressing **F** did not always trigger the interaction, the **food bowl** object sometimes failed to appear, or the quest did not update to **completed** after the interaction.
+
+
+To resolve these problems, I reviewed how the quest state interacts with the item system. Quest items such as **CatFood** and **CatToy** appear depending on the current training stage and rely on the `RefreshVisibility()` method implemented in the **Item** class. I verified that updates to `CurrentTrainingStage` triggered the `OnTrainingStageChanged` event and that this event correctly called `RefreshVisibility()` to update item visibility. After adjusting this logic, the quest items appeared at the correct stages and the feeding interaction could be completed successfully.
+
+
+After the main interaction flow became functional, I continued testing and found additional issues related to dialogue options. The **Cat Knowledge** option in the dialogue menu could not be selected during the early stage of the quest, preventing access to that dialogue path. After reviewing the dialogue node connections and adjusting the configuration, this option became selectable again.
+
+
+However, resolving this issue revealed another problem: in some cases the next stage of the training quest would fail to trigger after the feeding quest was completed. Because the dialogue system, quest logic, and item visibility system are closely connected, fixing one issue sometimes exposed inconsistencies in other parts of the system. I therefore continued adjusting the dialogue node connections and quest stage logic while repeatedly testing the full quest progression.
+
+
+After these debugging steps, the entire training quest sequence works consistently. The player can interact with the Clerk NPC, receive the feeding quest, complete the feeding interaction with the cat, unlock the next stage of the training quest, and progress through the storyline without the dialogue system breaking or the quest chain resetting unexpectedly.<br><br>
+
+
+**Start UI and Welcome Interface**
+
+In addition to debugging the quest system, I implemented a start screen UI and an in-game welcome interface that provides hints about what the player should do, to improve the player’s onboarding experience. Previously, the game started immediately when the scene loaded, which could be confusing for first-time players.
+
+
+To address this, I created a start screen using Unity’s **Canvas UI system**, including a **Start Game** button that allows players to begin the game intentionally. The UI appears when the scene first loads and remains visible until the player presses the start button.
+
+
+I also added an in-game welcome and hint panel that briefly introduces the town and informs players about basic controls and objectives. This interface provides early guidance before players begin interacting with NPCs and quests.
+
+
+These UI additions improve the player’s first interaction with the game and make the transition from the start screen to gameplay more structured and understandable.
 
 
 ### Tina Meng
