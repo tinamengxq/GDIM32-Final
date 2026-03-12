@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Clerk : NPC
@@ -10,6 +11,7 @@ public class Clerk : NPC
     [SerializeField] private DialogueNode trainingPlayAssignedNode;
     [SerializeField] private DialogueNode trainingPlayCompletedNode;
     [SerializeField] private DialogueNode trainingCompletedNode;
+    [SerializeField] private GameObject endGameNotice;
 
     public override void Interact()
     {
@@ -77,9 +79,12 @@ public class Clerk : NPC
 
                     case TrainingStage.TrainingCompleted:
                         choice.nextNode = trainingCompletedNode;
+                        //endGameNotice.SetActive(true);
                         break;
                 }
             }
         }
     }
+
+    
 }

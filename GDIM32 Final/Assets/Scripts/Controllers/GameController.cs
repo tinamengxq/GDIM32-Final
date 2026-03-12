@@ -225,4 +225,9 @@ public class GameController : MonoBehaviour
     {
         Debug.Log("GameController was destroyed");
     }
+
+    public bool AreAllQuestsCompleted()
+    {
+        return CurrentTrainingStage == TrainingStage.TrainingCompleted;
+    }
 }

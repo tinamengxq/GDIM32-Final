@@ -34,6 +34,8 @@ public class Cat : NPC
         {
             catAnimator.enabled = true;
         }
+        catFoodPrefab.SetActive(false);
+        catToyPrefab.SetActive(false);
     }
 
     public override bool CanInteract()
@@ -77,7 +79,7 @@ public class Cat : NPC
                 return;
             }
             
-            MakeFoodAppear();
+            
             PlayCatAnimation(eatStateName);
             if (catAudioSource != null)
             {
@@ -85,6 +87,7 @@ public class Cat : NPC
             }
             controller.SetHasCatFood(false);
             controller.CompleteFeedQuest();
+            MakeFoodAppear();
             return;
         }
 
@@ -94,19 +97,23 @@ public class Cat : NPC
             {
                 return;
             }
-            MakeToyAppear();
+            
             PlayCatAnimation(playStateName);
             controller.CompletePlayQuest();
+            MakeToyAppear();
+            return;
         }
     }
     private void MakeFoodAppear()
     {
+        catFoodPrefab.SetActive(true);
         food = Instantiate(catFoodPrefab, eatingPosition.position, eatingPosition.rotation);
         Destroy(food, 10f);
     }
 
     private void MakeToyAppear()
     {
+        catToyPrefab.SetActive(true);
         toy = Instantiate(catToyPrefab, playingPosition.position, playingPosition.rotation);
         Destroy(toy, 10f); 
     }
