@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class Cat : NPC
+
 {
     [SerializeField] private Animator catAnimator;
     [SerializeField] private AudioSource catAudioSource;
+    [SerializeField] private AudioClip playSound;
     [SerializeField] private string eatStateName = "Armature|eat";
     [SerializeField] private string playStateName = "Armature|play";
     [SerializeField] private GameObject catFoodPrefab;
@@ -13,7 +16,6 @@ public class Cat : NPC
 
     private GameObject food;
     private GameObject toy;
-    
 
     private void Awake()
     {
@@ -78,13 +80,14 @@ public class Cat : NPC
             {
                 return;
             }
-            
-            
+
             PlayCatAnimation(eatStateName);
+
             if (catAudioSource != null)
             {
                 catAudioSource.Play();
             }
+
             controller.SetHasCatFood(false);
             controller.CompleteFeedQuest();
             MakeFoodAppear();
@@ -97,13 +100,20 @@ public class Cat : NPC
             {
                 return;
             }
-            
+
             PlayCatAnimation(playStateName);
+
+            if (catAudioSource != null && playSound != null)
+            {
+                catAudioSource.PlayOneShot(playSound);
+            }
+
             controller.CompletePlayQuest();
             MakeToyAppear();
             return;
         }
     }
+
     private void MakeFoodAppear()
     {
         catFoodPrefab.SetActive(true);
@@ -115,7 +125,7 @@ public class Cat : NPC
     {
         catToyPrefab.SetActive(true);
         toy = Instantiate(catToyPrefab, playingPosition.position, playingPosition.rotation);
-        Destroy(toy, 10f); 
+        Destroy(toy, 10f);
     }
 
     private void PlayCatAnimation(string stateName)

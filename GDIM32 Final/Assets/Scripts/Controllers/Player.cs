@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] float fallbackGroundY = 0f;
 
     [SerializeField] float maxReasonableCameraOffset = 3f;
-    [SerializeField] Vector3 defaultCameraLocalPosition = new Vector3(0.6f, 0.55f,-14f);
+    [SerializeField] Vector3 defaultCameraLocalPosition = new Vector3(0.6f, 0.55f, -14f);
 
     CharacterController cc;
     float xRot, vVel;
@@ -38,7 +38,9 @@ public class Player : MonoBehaviour
     void Awake()
     {
         cc = GetComponent<CharacterController>() ?? gameObject.AddComponent<CharacterController>();
-        cc.height = 1.8f; cc.center = new Vector3(0, 0.9f, 0); cc.radius = 0.3f;
+        cc.height = 1.8f;
+        cc.center = new Vector3(0, 0.9f, 0);
+        cc.radius = 0.3f;
 
         if (!cameraTransform)
         {
@@ -47,7 +49,6 @@ public class Player : MonoBehaviour
             else if (Camera.main) cameraTransform = Camera.main.transform;
         }
 
-        //FixCamLocal();
         (GetComponent<PlayerInteractor>() ?? gameObject.AddComponent<PlayerInteractor>()).SetCameraTransform(cameraTransform);
     }
 
@@ -56,18 +57,31 @@ public class Player : MonoBehaviour
         EnsureGround();
         SpawnNearClerk();
         SnapToGround();
-        safePos = transform.position; safeInit = true;
-        LockCursor(true);
+        safePos = transform.position;
+        safeInit = true;
+        LockCursor(false);
     }
 
     void Update()
     {
         if (!cameraTransform) return;
 
-        if (controlEnabled) { Look(); Move(); }
-        else GravityOnly();
+        if (controlEnabled)
+        {
+            Look();
+            Move();
+        }
+        else
+        {
+            GravityOnly();
+        }
 
-        if (cc.isGrounded) { safePos = transform.position; safeInit = true; }
+        if (cc.isGrounded)
+        {
+            safePos = transform.position;
+            safeInit = true;
+        }
+
         if (transform.position.y < minimumAllowedY) RestoreSafe();
     }
 
@@ -75,7 +89,7 @@ public class Player : MonoBehaviour
     {
         if (controlEnabled == enabled) return;
         controlEnabled = enabled;
-        LockCursor(enabled);
+        LockCursor(false);
     }
 
     void Look()
@@ -91,11 +105,16 @@ public class Player : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal"), v = Input.GetAxis("Vertical");
         Vector3 m = (transform.right * h + transform.forward * v) * moveSpeed;
-        ApplyGravity(); m.y = vVel;
+        ApplyGravity();
+        m.y = vVel;
         cc.Move(m * Time.deltaTime);
     }
 
-    void GravityOnly() { ApplyGravity(); cc.Move(Vector3.up * vVel * Time.deltaTime); }
+    void GravityOnly()
+    {
+        ApplyGravity();
+        cc.Move(Vector3.up * vVel * Time.deltaTime);
+    }
 
     void ApplyGravity()
     {
@@ -115,9 +134,11 @@ public class Player : MonoBehaviour
         if (Vector3.Distance(a, b) <= Mathf.Clamp(relocateDistanceThreshold, 0.1f, 1f)) return;
 
         Vector3 dir = clerk.transform.forward.sqrMagnitude < 0.0001f ? Vector3.back : clerk.transform.forward;
-        dir.y = 0; dir.Normalize();
+        dir.y = 0;
+        dir.Normalize();
 
-        Vector3 tp = cp - dir * clerkSpawnDistance; tp.y = cp.y + clerkHeightOffset;
+        Vector3 tp = cp - dir * clerkSpawnDistance;
+        tp.y = cp.y + clerkHeightOffset;
 
         cc.enabled = false;
         transform.position = tp;
@@ -134,13 +155,16 @@ public class Player : MonoBehaviour
     void SnapToGround()
     {
         if (!GroundHit(initialSnapProbeDistance, out RaycastHit hit)) return;
-        var p = transform.position; p.y = hit.point.y + 0.05f; transform.position = p;
+        var p = transform.position;
+        p.y = hit.point.y + 0.05f;
+        transform.position = p;
         vVel = -2f;
     }
 
     bool GroundHit(float dist, out RaycastHit best)
     {
-        best = default; float bestD = float.MaxValue;
+        best = default;
+        float bestD = float.MaxValue;
         var origin = transform.position + Vector3.up * 0.5f;
         var hits = Physics.RaycastAll(origin, Vector3.down, dist, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
 
@@ -151,8 +175,13 @@ public class Player : MonoBehaviour
             var t = h.collider.transform;
             if (t == transform || t.IsChildOf(transform)) continue;
             if (h.normal.y < 0.45f) continue;
-            if (h.distance < bestD) { bestD = h.distance; best = h; }
+            if (h.distance < bestD)
+            {
+                bestD = h.distance;
+                best = h;
+            }
         }
+
         return bestD < float.MaxValue;
     }
 
@@ -177,7 +206,9 @@ public class Player : MonoBehaviour
     void RestoreSafe()
     {
         if (!safeInit) return;
-        cc.enabled = false; transform.position = safePos; cc.enabled = true;
+        cc.enabled = false;
+        transform.position = safePos;
+        cc.enabled = true;
         vVel = -2f;
     }
 
@@ -192,6 +223,6 @@ public class Player : MonoBehaviour
     static void LockCursor(bool on)
     {
         Cursor.lockState = on ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible = !on;
+        Cursor.visible = true;
     }
 }
