@@ -223,6 +223,44 @@ These UI additions improve the player’s first interaction with the game and ma
 
 
 ### Tina Meng
+Contribution:
+
+1. I created, wrote and debugged codes for the new dialogue system and fixed code for the item appear. 
+    - Dialogue Node
+        - All codes
+    - DialogueManager
+        - StartDialogue (create)
+        - ShowCurrentNode (create)
+        - BuildOptionsFromNode (create)
+        - FinishAndClose (rewrite)
+        - AdvanceNodeOrFinish (create)
+        - OnChoiceSelected (rewrite)
+        - ShowNodeChoice (create)
+    - Clerk
+        - Interact (rewrite)
+        - OnQuestTrainingSelected (rewrite)
+    - DialogueView
+        - EnsureView (changed details)
+    - Cat
+        - CanInteract (rewrite)
+2. I built all scriptable objects for the game and improved dialogue content for the following nodes
+    - Training Not Started
+    - Training Play Assigned
+    - Training Completed
+    - Menu
+3. I wrote codes and built the ending UI for the game. 
+    - EndGameNotice
+        - Create script
+        - ShowNotice
+        - ContinueGame
+        - RestartGame
+            - I deleted this function because I found that it couldn't work perfectly in the game
+    - Quest
+        - Update
+        - CheckGameEnd
+    - GameController
+        - AreAllQuestsCompleted
+
 ### Yan Zhang
 
 
