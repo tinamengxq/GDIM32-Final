@@ -171,10 +171,9 @@ When I do the project in the future, I will be more realistic at the proposal st
 
 ## Final Submission
 ### Group Devlog
-Put your group Devlog here.
-**Only one Devlog needs to be written per team for this prompt.**
 
-**Prompt: Describe each of the 3 design patterns used in your final project, especially where in the code they can be found and why they helped structure your project. You must be able to explain why all of these design patterns were useful in building your game.**
+Describe each of the 3 design patterns used in your final project, especially where in the code they can be found and why they helped structure your project. You must be able to explain why all of these design patterns were useful in building your game.
+
 
 
 ### Yuxin Ding
@@ -248,7 +247,7 @@ Contribution:
     - Training Play Assigned
     - Training Completed
     - Menu
-3. I wrote codes and built the ending UI for the game. 
+3. I wrote codes and built the ending UI for the game to inform players that they have finished the game and they are free to leave
     - EndGameNotice
         - Create script
         - ShowNotice
