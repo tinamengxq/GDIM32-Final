@@ -1339,6 +1339,7 @@ MonoBehaviour:
   interactionHeight: 1.5
   interactionMaximumDistance: 8
   promptText: 'F: Interact'
+  noticePanel: {fileID: 1094938545}
   catAnimator: {fileID: 354254792}
   catAudioSource: {fileID: 0}
   playSound: {fileID: 8300000, guid: 41eab31d7a7065f469cec20d81345fe7, type: 3}
@@ -3368,6 +3369,7 @@ MonoBehaviour:
   interactionHeight: 1.5
   interactionMaximumDistance: 1.5
   promptText: 'F: Interact'
+  noticePanel: {fileID: 1094938545}
   menuNode: {fileID: 11400000, guid: a48b48a3429b14cf4a2d52a3be38a853, type: 2}
   trainingNotStartedNode: {fileID: 11400000, guid: a0dbeb02a66734b51b3521c43ed02fb4, type: 2}
   trainingFeedAssignedNode: {fileID: 11400000, guid: 4286c05266f2b4cffa0a438434dfa467, type: 2}
@@ -5058,7 +5060,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15.999985}
+  m_AnchoredPosition: {x: 0, y: -16}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094938547
@@ -5113,6 +5115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noticePanel: {fileID: 1094938545}
   player: {fileID: 47546350}
+  doShowInteraction: 0
 --- !u!1 &1094988874
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,6 +5148,7 @@ MonoBehaviour:
   interactionHeight: 1.5
   interactionMaximumDistance: 1
   promptText: 'F: Interact'
+  noticePanel: {fileID: 1094938545}
 --- !u!4 &1094988876
 Transform:
   m_ObjectHideFlags: 0
