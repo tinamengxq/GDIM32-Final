@@ -342,14 +342,26 @@ In the systam architechture section of our game proposal document, we picked "MV
     - And so the method of refreshvisibility is very long and I will not copy it here. This method changes whether the prop will appear in the scene. 
     - To sum up, the MVC pattern used for the items in our game is much simpler than that used for our training states because the number of items is much smaller than the number of training states. M stands for whether player has interacted with the item. If the controller finds that player has interacted with the item, it will call the event to change visual appearance of the prop. When the event is called, whether the item appears in the scene will be refreshed, the players will then find out that, by watching the scene, they actually picked the item from the ground.
 - It seems that MVC is really useful because we can link present our responses immediately in scripts after the controller find some changes. The entire events seem to be linked to each other and our different script documents seem to be correlated to each other. Coding for events make the entire work more organized and we will know which part of the code is doing what works. This leads to better scaling for our project because if we crtl/cmd+F for an event and its details, we will quickly figure out will be happening when this event is called, and what will call this event. 
+
+
 2. Singleton
 - Singleton is very commonly used in our scripts too. 
 ```
 public static GameController Instance { get; private set; }
 public static UI Instance { get; private set; }
 public static DialogueManager Instance { get; private set; }
+...
+// And they all have these codes after them
+    if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        Instance = this;
 ```
 - Singleton is so useful for our coding because we then don't need much effort to try add unsuitable components and find components for others. We can directly call the methods in related scripts to use. It is sooooooooooooooooooooooooooooo convenient that the scaling will look pretty good for our scripts. 
+
+
 3. Inheritance & Polymorphism
 - Inheritance is used for NPC and Items. 
 
