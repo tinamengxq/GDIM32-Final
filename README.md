@@ -171,7 +171,7 @@ When I do the project in the future, I will be more realistic at the proposal st
 
 ## Final Submission
 ### Group Devlog
-In the systam architechture section of our game proposal document, we picked "MVC", "Singleton", and "Interitance & Polymorphism" as our 3 design patterns. Actually, we included the 4th design pattern finite state machine in our proposal by implementing it in "MVC" and "Interitance & Polymorphism". We fully utilized these patterns in our project as I see them everytime I opened our scripts. 
+In the systam architechture section of our game proposal document, we picked "MVC", "Singleton", and "Interitance & Polymorphism" as our 3 design patterns. Actually, we included the 4th design pattern finite state machine in our proposal by implementing it in "MVC" and "Interitance & Polymorphism". We fully utilized these patterns in our project as I(Tina) see them everytime I(Tina) opened our scripts. 
 
 1. MVC
 - The Model-View-Controller is a design pattern that systems are decoupled from each other. Model stands for game data, view is visuals and results, and controller presents pure game logic. Inside the MVC pattern, controller stewards model, and view listens to controller. View subscribes to controller events and reacts to changes. 
@@ -345,7 +345,7 @@ In the systam architechture section of our game proposal document, we picked "MV
 
 
 2. Singleton
-- Singleton is very commonly used in our scripts too. 
+- Singleton is very commonly used in our scripts too. Singleton will make methods and easier to be reached and it self-checks if there are two same gameobjects for controllers in the hierarchy. As three people are coding for this game, we sometimes coincidentally create the similar gameobject with the same components in the hierarchy. Singleton helped avoid such mistakes by clearing out the errors itself before the errors start to break our hearts.
 ```
 public static GameController Instance { get; private set; }
 public static UI Instance { get; private set; }
@@ -363,7 +363,51 @@ public static DialogueManager Instance { get; private set; }
 
 
 3. Inheritance & Polymorphism
-- Inheritance is used for NPC and Items. 
+- Inheritance is used for NPC and Items. Props and different NPCs will derive actions and attributes from parent classes. We also used interface for inheritance. 
+```
+// Child classes
+public abstract class Item : MonoBehaviour, IInteractable
+public class CatFood : Item
+public class CatToy : Item
+public class Cat : NPC
+public class Clerk : NPC
+
+// Interface
+public interface IInteractable
+{
+    string GetPromptText();
+    Transform GetInteractionTransform();
+    float GetMaxDistance();
+    void Interact();
+    bool CanInteract();
+}
+
+// Example for polymorphism
+// Clerk
+public override void Interact()
+    {
+        Debug.Log("F clicked");
+
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogError("[Clerk] DialogueManager not found.");
+            return;
+        }
+
+        GameController controller = GameController.Instance;
+
+        if (controller == null)
+        {
+            DialogueManager.Instance.StartDialogue(menuNode);
+            return;
+        }
+
+        UpdateTrainingChoice(controller.CurrentTrainingStage);
+
+        DialogueManager.Instance.StartDialogue(menuNode);
+    }
+```
+- Inheritance allows us to code small differences between child classes while coding for their shared similarity. I(Tina) always feel that the existance of inheritance, interface and polymorphism is the savior if a badly scaling project. With two parent classes in our project, things become a lot easier to figure out. I can know what gameobject is using what child class, along with the other gameobjects that share some similar actions and attributes with. WHen I want to change some codes for different child objects, I will know all child classes that I should change and consider whether I can do this change in the parent class. Also, the work load greatly decreased because we don't neet to write repeated scripts for NPCs and items.
 
 
 ### Yuxin Ding
