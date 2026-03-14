@@ -5,6 +5,7 @@ public class NPC : MonoBehaviour, IInteractable
     [SerializeField] private float interactionHeight = 1.5f;
     [SerializeField] private float interactionMaximumDistance = 3f;
     [SerializeField] private string promptText = "F: Interact";
+    [SerializeField] private GameObject noticePanel;
 
     public virtual string GetPromptText()
     {
@@ -23,6 +24,11 @@ public class NPC : MonoBehaviour, IInteractable
 
     public virtual bool CanInteract()
     {
+        if(noticePanel.activeSelf)
+        {
+            return false;
+        }
+
         if (!enabled || !gameObject.activeInHierarchy)
         {
             return false;
