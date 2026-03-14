@@ -171,9 +171,185 @@ When I do the project in the future, I will be more realistic at the proposal st
 
 ## Final Submission
 ### Group Devlog
+In the systam architechture section of our game proposal document, we picked "MVC", "Singleton", and "Interitance & Polymorphism" as our 3 design patterns. Actually, we included the 4th design pattern finite state machine in our proposal by implementing it in "MVC" and "Interitance & Polymorphism". We fully utilized these patterns in our project as I see them everytime I opened our scripts. 
 
-Describe each of the 3 design patterns used in your final project, especially where in the code they can be found and why they helped structure your project. You must be able to explain why all of these design patterns were useful in building your game.
+1. MVC
+- The Model-View-Controller is a design pattern that systems are decoupled from each other. Model stands for game data, view is visuals and results, and controller presents pure game logic. Inside the MVC pattern, controller stewards model, and view listens to controller. View subscribes to controller events and reacts to changes. 
+- In our game, we used MVC for our training stage change. 
+    - In GameController.cs, we created a finite state machine using enum called TraningStage. It separates different stages of the player before and after each quest is pendng assigned, assigned, pending finished, and finished. 
+    ```
+    public enum TrainingStage
+    {
+    NotStarted,
+    FeedAssigned,
+    FeedCompleted,
+    PlayAssigned,
+    PlayCompleted,
+    TrainingCompleted
+    }
+    ```
+    - Then, we created events as "C" in "MVC" to stewards the player's stage updates. We first set training stage as training not started, and then we named an event called OnTrainingStageChanged. 
+    ```
+    public TrainingStage CurrentTrainingStage { get; private set; } = TrainingStage.NotStarted;
+    public event Action<TrainingStage> OnTrainingStageChanged;
+    ```
+    - Once started, the quests are pending to be assigned, the controller starts to focus on whether the training status have changed. If the dialogue of assigning the first quest has played between the clerk NPC and the player, the controller will know that the state of training is changed. At this moment, the event of OnTrainingStageChanged will be called in a method called SetTrainingStage. 
+    ```
+    public void AssignFeedQuest()
+    {
+        if (CurrentTrainingStage == TrainingStage.NotStarted)
+        {
+            SetTrainingStage(TrainingStage.FeedAssigned);
+        }
+    }
 
+    public void CompleteFeedQuest()
+    {
+        if (CurrentTrainingStage == TrainingStage.FeedAssigned)
+        {
+            SetHasCatFood(false);
+            SetTrainingStage(TrainingStage.FeedCompleted);
+        }
+    }
+
+    public void AssignPlayQuest()
+    {
+        if (CurrentTrainingStage == TrainingStage.FeedCompleted)
+        {
+            SetTrainingStage(TrainingStage.PlayAssigned);
+        }
+    }
+
+    public void CompletePlayQuest()
+    {
+        if (CurrentTrainingStage == TrainingStage.PlayAssigned)
+        {
+            SetHasCatToy(false);
+            SetTrainingStage(TrainingStage.PlayCompleted);
+        }
+    }
+
+    public void MarkTrainingCompleted()
+    {
+        if (CurrentTrainingStage == TrainingStage.PlayCompleted)
+        {
+            SetTrainingStage(TrainingStage.TrainingCompleted);
+        }
+    }
+    ```
+    - Inside the method called SetTrainingStage(), the event is invoked. This is how the controller stewards the model. 
+    ```
+    public void SetTrainingStage(TrainingStage nextStage)
+    {
+        ...
+        OnTrainingStageChanged?.Invoke(CurrentTrainingStage);
+        ...
+    }
+    ```
+    - If the game data shows changes, controller will know the changes as the event is called. The event is then linked to the view. Once the event is called, the methods subscribed to the event inside the UI script will responde immediately to lead to changes in the view part shown to the players. Visually, this will be presented as checking the quest in the questlist on the top-right corner on the screen. Thus, in the UI script, a method called HandleTrainingStateChanged will be subscribed to OnTrainingStageChanged in the Start method.
+    ```
+    private void Start()
+    {
+        ...
+        GameController.Instance.OnTrainingStageChanged += HandleTrainingStageChanged;
+        HandleTrainingStageChanged(GameController.Instance.CurrentTrainingStage);
+        ...
+    }
+
+    private void HandleTrainingStageChanged(TrainingStage stage)
+    {
+        ...
+        questView.Refresh(stage);
+        ...
+    }
+    ```
+    - And the Refresh method here locates in the script called QuestView. This script controlls how quests appear on the top-right corner of the screen and how checking marks appear next to the content of the quest.
+    - To sum up, MVC is used to control a chain of changes caused by the update of quest states. In gamecontroller, it stewards the game data of trainingstates to see when the event should be called. When the event is called, it calls methods in UI scripts to show changes in trainingstates in the ui view. 
+- Similarly, we also used MVC for the items. 
+    - Again, in the game controller, we created an event called OnInventaryChanged. This event will steward the game data of whether the player has item with them. The items refer to the props used in the trainings: the food to feed the cat, and the toy to play with the cat. 
+    ```
+    public event Action OnInventoryChanged;
+    public bool HasCatFood { get; private set; }
+    public bool HasCatToy { get; private set; }
+
+    public void SetHasCatFood(bool value)
+    {
+        if (HasCatFood == value)
+        {
+            return;
+        }
+
+        HasCatFood = value;
+        OnInventoryChanged?.Invoke();
+
+        Item[] items = FindObjectsOfType<Item>(true);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                items[i].RefreshVisibility();
+            }
+        }
+    }
+
+    public void SetHasCatToy(bool value)
+    {
+        if (HasCatToy == value)
+        {
+            return;
+        }
+
+        HasCatToy = value;
+        OnInventoryChanged?.Invoke();
+
+        Item[] items = FindObjectsOfType<Item>(true);
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i] != null)
+            {
+                items[i].RefreshVisibility();
+            }
+        }
+    }
+    ```
+    - The two methods that calls the event appears in scripts of CatFood and CatToy. If the player interacts with the prop, the game data will know that the player interacted with it, then controller will see player interacted with the prop and call the event to change the view so that the prop will no longer appear in the place where they are placed to wait for the playr to interact.
+    ```
+    // CatToy : Item
+    protected override void OnInteract(GameController controller)
+    {
+        controller.SetHasCatToy(true);
+        Debug.Log("[CatToy] Picked up cat toy.");
+    }
+
+    // CatFood : Item
+    protected override void OnInteract(GameController controller)
+    {
+        ...
+        controller.SetHasCatFood(true);
+        Debug.Log("[CatFood] Picked up cat food.");
+        ...
+    }
+    ```
+    - Then what is subscribed to the event? In item script, some strange things happened to make a method HandleGameStateChanged to subscribe to the event. But the subscription finally appeared to take place in the Start method. Because the entire process of subscription is too frustrating, I will only show the line of code for subscription.
+    ```
+    controller.OnInventoryChanged += HandleGameStateChanged;
+
+    private void HandleGameStateChanged()
+    {
+        RefreshVisibility();
+    }
+    ```
+    - And so the method of refreshvisibility is very long and I will not copy it here. This method changes whether the prop will appear in the scene. 
+    - To sum up, the MVC pattern used for the items in our game is much simpler than that used for our training states because the number of items is much smaller than the number of training states. M stands for whether player has interacted with the item. If the controller finds that player has interacted with the item, it will call the event to change visual appearance of the prop. When the event is called, whether the item appears in the scene will be refreshed, the players will then find out that, by watching the scene, they actually picked the item from the ground.
+
+
+
+
+
+
+
+2. Singleton
+3. Inheritance & Polymorphism
 
 
 ### Yuxin Ding
@@ -224,7 +400,7 @@ These UI additions improve the player’s first interaction with the game and ma
 ### Tina Meng
 Contribution:
 
-1. I created, wrote and debugged codes for the new dialogue system and fixed code for the item appear. 
+1. The old dialogue system puts dialogue content in clerk's code and uses ui script to show the dialogue directly. I found that this cannot meet professor's requirement of scriptable object so I created scriptable objects and an entirely new dialogue system. I created, wrote and debugged codes for the new dialogue system and fixed code for the item appear. 
     - Dialogue Node
         - All codes
     - DialogueManager
@@ -260,6 +436,8 @@ Contribution:
     - GameController
         - AreAllQuestsCompleted
 
+
+As I mentioned in pre-learning quiz of week 10, I found that scaling of the game project is extremely important because when I was building the new dialogue system, I have to figure out what parts of the code are still useful and what are not. 
 ### Yan Zhang
 
 
