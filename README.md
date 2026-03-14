@@ -495,7 +495,20 @@ Contribution:
         - AreAllQuestsCompleted
 
 As I mentioned in pre-learning quiz of week 10, I found that scaling of the game project is extremely important because when I was building the new dialogue system, I have to figure out what parts of the code are still useful and what are not. 
+
+
 ### Yan Zhang
+At this stage, we found that the branch dialogue system we originally made was not actually the ScriptableObjects structure required by the professor, so my team member Tina rewrote this part. After she finished writing it, we found a new problem: our task system suddenly stopped working, but Unity did not show any errors, so it was not easy to find the reason at the beginning.
+
+
+The three of us tried to solve this problem together. At first, Tina tried to fix it, and then Yuxin continued to fix it. I helped her investigate the problem together. Later, we found that this problem was mainly due to the fact that the old and new systems did not integrate well, which is equivalent to the two systems competing for control. The code was still calling DialogueManager.Instance.StartDialogue(menuNode), and the "training" option in Menu.asset always pointed to the "Training Not Started" node.
+
+
+This leads to a problem: no matter what stage of the task you are in, as long as you choose "training", you will always see the first dialogue. Later, we fixed this problem so that it would no longer point to that node all the time.
+
+
+Because I wrote the early version of the task system, the current version is not the one I am most familiar with. So at this stage I mainly did some fine-tuning work in Unity, such as adjusting the modeling size of the cat, modifying the player's spawn point, and processing audio links. I did not change much code in this part.
+
 
 
 ## Open-Source Assets
@@ -509,3 +522,4 @@ As I mentioned in pre-learning quiz of week 10, I found that scaling of the game
 - [Cat eating sound effect](https://pixabay.com/sound-effects/search/cat%20eat/) -Audio feedback during the cat eating animation
 - [Background music](https://assetstore.unity.com/packages/audio/music/music-cat-in-a-box-free-single-306461) -Providing background music during gameplay
 - [Start Game UI font](https://www.dafont.com/search.php?q=magicretro) -Provide artistic font for the Start Game UI
+- [Cat playing sound effect](https://pixabay.com/sound-effects/search/cat%20grab/)
