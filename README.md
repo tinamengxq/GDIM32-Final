@@ -458,7 +458,7 @@ These UI additions improve the player’s first interaction with the game and ma
 ### Tina Meng
 Contribution:
 
-1. The old dialogue system puts dialogue content in clerk's code and uses ui script to show the dialogue directly. I found that this cannot meet professor's requirement of scriptable object so I created scriptable objects and an entirely new dialogue system. I created, wrote and debugged codes for the new dialogue system and fixed code for the item appear. 
+1. The old dialogue system puts dialogue content in clerk's code and uses ui script to show the dialogue directly. I found that this cannot meet professor's requirement of scriptable object so I created scriptable objects and an entirely new dialogue system. I created, wrote and debugged codes for the new dialogue system and fixed code for the item appear. The new dialogue system couldn't fit will with the old UI system which can still be utilized along with the new dialogue system. There were hundreds of bugs and I debugged most of them and left the rest few to Yuxin. 
     - Dialogue Node
         - All codes
     - DialogueManager
@@ -476,12 +476,12 @@ Contribution:
         - EnsureView (changed details)
     - Cat
         - CanInteract (rewrite)
-2. I built all scriptable objects for the game and improved dialogue content for the following nodes
+2. I built all scriptable objects for the game and improved dialogue content for the following nodes. My changes made the instruction clearer and more logical. I tell the player where to go and tell them to come back after finishing the quest.
     - Training Not Started
     - Training Play Assigned
     - Training Completed
     - Menu
-3. I wrote codes and built the ending UI for the game to inform players that they have finished the game and they are free to leave
+3. I wrote codes and built the ending UI for the game to inform players that they have finished the game and they are free to leave. This also lead to buges like players are still able to interact with the clerk even when the ending UI is shown. I debugged this one. I also tried to use buttons but the buttons never responded to my actions in game. Therefore I gave up the option to use button for players to choose whether to restart or continue playing. 
     - EndGameNotice
         - Create script
         - ShowNotice
@@ -493,7 +493,6 @@ Contribution:
         - CheckGameEnd
     - GameController
         - AreAllQuestsCompleted
-
 
 As I mentioned in pre-learning quiz of week 10, I found that scaling of the game project is extremely important because when I was building the new dialogue system, I have to figure out what parts of the code are still useful and what are not. 
 ### Yan Zhang
