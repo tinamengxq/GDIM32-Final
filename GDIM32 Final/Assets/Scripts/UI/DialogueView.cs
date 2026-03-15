@@ -96,12 +96,21 @@ public class DialogueView : MonoBehaviour
         bodyText.text = line;
         ClearChoices();
         choicesContainer.gameObject.SetActive(false);
-        continueHintText.gameObject.SetActive(showContinueHint);
+
+        bool lastLine = currentLineIndex == node._lines.Length - 1;
+        //continueHintText.gameObject.SetActive(true);
         if (showContinueHint)
         {
-            continueHintText.text = "F: Continue";
+            if (lastLine)
+            {
+                continueHintText.text = "F: Close";
+            }
+            else
+            {
+                continueHintText.text = "F: Continue";
+            }
         }
-
+        continueHintText.gameObject.SetActive(true);
     }
 
     public void ShowNodeChoices(DialogueNode node, Action<int> ChoiceSelected)

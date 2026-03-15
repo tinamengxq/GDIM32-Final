@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Training Play Assigned
   m_EditorClassIdentifier: 
   _lines:
+  - Don't waste your time here anymore!
   - Go and have a good time with your cat!
   _speakerName: Clerk
   hasChoice: 0
   choices: []
   nextNode: {fileID: 0}
+  questToGive: 
+  stageToSet: 0

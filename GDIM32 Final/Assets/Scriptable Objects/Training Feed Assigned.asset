@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Training Feed Assigned
   m_EditorClassIdentifier: 
   _lines:
+  - Don't waste your time here anymore!
   - Go and feed your cat! She is hungry now.
   _speakerName: Clerk
   hasChoice: 0
   choices: []
   nextNode: {fileID: 0}
+  questToGive: 
+  stageToSet: 0
